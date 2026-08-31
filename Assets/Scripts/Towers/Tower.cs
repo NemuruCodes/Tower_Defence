@@ -1,0 +1,47 @@
+using System.Linq;
+using UnityEngine;
+
+public class Tower : MonoBehaviour
+{
+
+    [SerializeField] private TowerData data;
+
+    private float currentHealth;
+    private float fireCooldown;
+    private ITargetingStrategy targeting;
+    private IAttackEffect attackEffect;
+
+    private void Awake()
+    {
+        currentHealth = data.maxHealth;
+        targeting = (ITargetingStrategy)data.targetingStrategy;   // SO implements the interface
+        attackEffect = (IAttackEffect)data.projectileBehavior;
+    }
+
+    private void Update()
+    {
+        fireCooldown -= Time.deltaTime;
+        if (fireCooldown > 0f) return;
+
+        var enemiesInRange = Physics.OverlapSphere(transform.position, data.range)
+            .Select(c => c.transform);
+
+        var target = targeting.SelectTarget(transform.position, data.range, enemiesInRange);
+        if (target == null) return;
+
+        Attack(target);
+        fireCooldown = 1f / data.fireRate;
+    }
+
+    private void Attack(Transform target)
+    {
+        // fire projectile, then on impact call:
+        attackEffect.OnHit(target, data.damage, target.position);
+    }
+
+    public void TakeDamage(float amount)
+    {
+        currentHealth -= amount;
+        if (currentHealth <= 0f) Destroy(gameObject);
+    }
+}

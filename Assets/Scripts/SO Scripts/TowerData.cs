@@ -14,7 +14,7 @@ public class TowerData : ScriptableObject
     public float fireRate = 1f; //shots per-second
 
     [Header("Behaviour")]
-    public ProjectileBehaviour projectileBehaviour;
-    public TargetingStratedgy targetingStratedgy;
+    public ProjectileBehaviour projectileBehavior;
+    public TargetingStratedgy targetingStrategy;
     
 }
