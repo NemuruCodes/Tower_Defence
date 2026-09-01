@@ -6,14 +6,25 @@ using UnityEngine.UIElements;
 [RequireComponent(typeof(PanelRenderer))]
 public class HudEvents : MonoBehaviour
 {
-    [SerializeField] private TowerData[] availableTowers;
+    [System.Serializable]
+    private struct TowerButtonBinding
+    {
+        public string buttonName;
+        public TowerData towerData;
+    }
+
+    [SerializeField] private TowerButtonBinding[] towerButtons;
     [SerializeField] private TowerPlacementManager placementManager;
 
     private PanelRenderer panelRenderer;
     private VisualElement panel;
     private VisualElement listContainer;
     private VisualElement placingContainer;
+
     private Button toggleButton;
+
+    private Button singleAttackTower;
+
     private bool isOpen = false;
     private bool isPlacing = false;
 
@@ -39,10 +50,31 @@ public class HudEvents : MonoBehaviour
         toggleButton = root.Q<Button>("ToggleButton");
         placingContainer = root.Q<VisualElement>("PlaceOrCancel");
 
+        singleAttackTower = root.Q<Button>("SingleTarget");
+
+        
+
         toggleButton.clicked += ToggleMenu;
 
-        //PopulateTowerList();
+        BindTowerButtons(root);
     }
+
+    private void BindTowerButtons(VisualElement root)
+    {
+        foreach (var binding in towerButtons)
+        {
+            Button button = root.Q<Button>(binding.buttonName);
+            if (button == null)
+            {
+                Debug.LogWarning($"HudEvents: no button named '{binding.buttonName}' found in UXML.");
+                continue;
+            }
+
+            TowerData data = binding.towerData; // local copy for the closure
+            button.clicked += () => OnTowerSelected(data);
+        }
+    }
+
 
     private void ToggleMenu()
     {
@@ -61,28 +93,12 @@ public class HudEvents : MonoBehaviour
         placingContainer.RemoveFromClassList(isPlacing ? "NotPlacing" : "Placing");
     }
 
-    private void PopulateTowerList()
-    {
-        listContainer.Clear();
-
-        foreach (var towerData in availableTowers)
-        {
-            var entry = new VisualElement();
-            entry.AddToClassList("tower-entry");
-
-            entry.Add(new Label(towerData.towerName));
-            entry.Add(new Label($"Cost: {towerData.buildCost}"));
-            entry.Add(new Label($"DMG: {towerData.damage}  RNG: {towerData.range}"));
-
-            entry.RegisterCallback<ClickEvent>(evt => OnTowerSelected(towerData));
-
-            listContainer.Add(entry);
-        }
-    }
-
     private void OnTowerSelected(TowerData towerData)
     {
+        Debug.Log("Begin placement");
+
         placementManager.BeginPlacement(towerData);
+
 
         TogglePrompt();
         ToggleMenu();

@@ -89,3 +89,7 @@
     opacity: 0;
     translate: -500px -500px;
 }
+
+.tower-button {
+    margin-right: 4px;
+}

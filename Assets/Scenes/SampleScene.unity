@@ -1211,9 +1211,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1e413a8ee0871543a14e9ad434b8ebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HudEvents
-  availableTowers:
-  - {fileID: 11400000, guid: 7f0667db7d0757b4bbb1b9961dd07f2e, type: 2}
-  - {fileID: 11400000, guid: 990102b4d30f6454c8889a23c3ca37f1, type: 2}
+  towerButtons:
+  - buttonName: SingleTarget
+    towerData: {fileID: 11400000, guid: 7f0667db7d0757b4bbb1b9961dd07f2e, type: 2}
+  - buttonName: SplashTarget
+    towerData: {fileID: 11400000, guid: 990102b4d30f6454c8889a23c3ca37f1, type: 2}
   placementManager: {fileID: 1610309908}
 --- !u!1 &2098894709
 GameObject:
