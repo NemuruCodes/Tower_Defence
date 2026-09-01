@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6cc4bd30d30f42040951e3b4dfe035cb, type: 3}
-  m_Name: TowerTest
+  m_Name: SplashTest
   m_EditorClassIdentifier: Assembly-CSharp::TowerData
   towerName: Single Attacking Tower
   towerPrefab: {fileID: 0}
