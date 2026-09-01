@@ -12,6 +12,7 @@ public class Tower : MonoBehaviour
     private TargetingStratedgy targeting;
     private ProjectileBehaviour attackEffect;
     public bool showRangeGizmo = false;
+    [SerializeField] private LayerMask enemyMask;
 
     private void Awake()
     {
@@ -27,8 +28,8 @@ public class Tower : MonoBehaviour
         fireCooldown -= Time.deltaTime;
         if (fireCooldown > 0f) return;
 
-        var enemiesInRange = Physics.OverlapSphere(transform.position, data.range)
-            .Select(c => c.transform);
+        var enemiesInRange = Physics.OverlapSphere(transform.position, data.range, enemyMask)
+        .Select(c => c.transform);
 
         var target = targeting.SelectTarget(transform.position, data.range, enemiesInRange);
         if (target == null) return;

@@ -15,7 +15,7 @@ MonoBehaviour:
   towerName: Single Attacking Tower
   towerPrefab: {fileID: 0}
   maxHealth: 100
-  damage: 5
+  damage: 2
   range: 15
   fireRate: 1
   projectileBehavior: {fileID: 11400000, guid: 25d01380d4f1f4e459c8517bf556fbbd, type: 2}
