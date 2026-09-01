@@ -1,0 +1,25 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/HUDstyle.uss?fileID=7433441132597879392&amp;guid=192d01fcaad7c7a4d958f235c8efb1e5&amp;type=3#HUDstyle"/>
+    <ui:VisualElement name="Container" class="tower-menu-open" style="flex-grow: 1; align-self: center; justify-content: flex-end;">
+        <ui:VisualElement name="PlaceOrCancel" class="Placing NotPlacing" style="transition-duration: 0.7s;">
+            <ui:VisualElement style="flex-grow: 1; flex-direction: row; height: 150px; align-items: auto; justify-content: center;">
+                <ui:Image scale-mode="ScaleToFit" name="LeftClick" style="align-self: center; width: 100px; height: 100px; margin-right: 40px; margin-left: 40px; min-height: 100px; max-height: 100px; align-items: center; flex-wrap: wrap; justify-content: flex-end; flex-direction: column;">
+                    <ui:Label text="Confirm" name="Label" style="align-self: center; align-items: center; flex-direction: row; justify-content: flex-start; -unity-text-align: middle-center; -unity-font-style: bold; white-space: nowrap;"/>
+                </ui:Image>
+                <ui:Image scale-mode="ScaleToFit" name="RightClick" style="align-self: center; width: 100px; height: 100px; margin-right: 40px; margin-left: 40px; min-height: 100px; max-height: 100px; align-items: center; justify-content: flex-end;">
+                    <ui:Label text="Cancel" name="Label" style="align-self: center; -unity-text-align: middle-center; -unity-font-style: bold;"/>
+                </ui:Image>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="TowerMenu" class="TowerMenuOpen TowerMenuClosed" style="transition-duration: 1s; transition-timing-function: ease; transition-property: all;">
+            <ui:Button text="^" name="ToggleButton" style="-unity-text-align: middle-center; align-items: auto; flex-direction: column; top: auto; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; padding-right: 30px; padding-left: 30px; -unity-font-style: bold; font-size: 25px; height: 35px; align-self: center; flex-wrap: nowrap; justify-content: flex-end; translate: 0 -40px;"/>
+            <ui:Label text="Tower Menu" class="header" style="align-self: center; justify-content: flex-start; align-items: center; -unity-text-align: middle-center; flex-wrap: nowrap; margin-top: 0; margin-bottom: 0; translate: 0 -20px;"/>
+            <ui:VisualElement name="ButtonContainer" style="flex-grow: 1; flex-direction: row; align-self: center; align-items: auto; justify-content: flex-start; margin-bottom: 60px;">
+                <ui:Button text="Single Attack" class="button" style="margin-right: 4px;"/>
+                <ui:Label text="Label" name="SingleAttackLabel" data-source="project://database/Assets/Scriptable%20Objects/Towers/TowerTest.asset?fileID=11400000&amp;guid=7f0667db7d0757b4bbb1b9961dd07f2e&amp;type=2#TowerTest" class="buttonLabel" style="flex-wrap: wrap; flex-direction: row; align-items: flex-start; align-self: center;"/>
+                <ui:Button text="Splash Attack" class="button" style="align-self: center; margin-right: 4px;"/>
+                <ui:Label text="Label" name="SingleAttackLabel" data-source="project://database/Assets/Scriptable%20Objects/Towers/SplashTest.asset?fileID=11400000&amp;guid=990102b4d30f6454c8889a23c3ca37f1&amp;type=2#SplashTest" class="buttonLabel" style="align-self: center;"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

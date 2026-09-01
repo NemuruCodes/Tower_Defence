@@ -38,7 +38,7 @@ public class TowerSelectionManager : MonoBehaviour
     private void UpdateHover(Tower hoveredTower)
     {
         Outline outline = hoveredTower != null ? hoveredTower.GetComponentInChildren<Outline>() : null;
-        Debug.Log(outline != null ? $"Found outline on {outline.gameObject.name}" : "No outline found");
+        
         if (outline == hoveredOutline) return;
 
         ClearHover();

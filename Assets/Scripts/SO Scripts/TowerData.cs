@@ -12,6 +12,7 @@ public class TowerData : ScriptableObject
     public float damage = 5f;
     public float range = 10f;
     public float fireRate = 1f; //shots per-second
+    public int buildCost = 50;
 
     [Header("Behaviour")]
     public ProjectileBehaviour projectileBehavior;

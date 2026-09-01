@@ -1,0 +1,91 @@
+:root {
+}
+
+.header {
+    font-size: 40px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    align-self: center;
+    align-items: auto;
+}
+
+.button {
+    margin-right: 20px;
+    margin-left: 20px;
+    width: 150px;
+    height: 150px;
+    font-size: 20px;
+    -unity-font-style: bold;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    align-self: center;
+}
+
+.buttonLabel {
+    align-self: center;
+    flex-wrap: wrap;
+    -unity-font-style: italic;
+    -unity-text-align: middle-left;
+    -unity-text-outline-width: 0;
+    -unity-text-outline-color: rgba(0, 0, 0, 0);
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    text-shadow: 1102376px 1121156px 0 rgb(0, 0, 0);
+    height: 150px;
+}
+
+
+
+
+
+
+
+.TowerMenuOpen {
+    flex-grow: 1;
+    align-self: center;
+    width: 1800px;
+    align-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-top: 0;
+    max-height: 300px;
+    min-height: auto;
+    margin-top: 0;
+    -unity-text-align: upper-left;
+    background-color: rgba(89, 89, 89, 0.588);
+    flex-wrap: wrap;
+    top: auto;
+    height: auto;
+}
+
+.TowerMenuClosed {
+    translate: 0 300px;
+    align-self: center;
+    justify-content: flex-end;
+    align-items: center;
+    width: 1800px;
+    max-height: 300px;
+}
+
+.Placing {
+    flex-grow: 1;
+    position: relative;
+    align-items: auto;
+    align-self: flex-start;
+    width: 400px;
+    max-height: 150px;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: auto;
+    translate: -60px -500px;
+    background-color: rgba(23, 154, 255, 0.392);
+}
+
+.NotPlacing {
+    opacity: 0;
+    translate: -500px -500px;
+}

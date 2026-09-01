@@ -45,9 +45,9 @@ public class TowerPlacementManager : MonoBehaviour
 
     private void TryConfirmPlacement(Vector3 position)
     {
-       // if (!ResourceManager.Instance.CanAfford(pendingTowerData.cost)) return;
+        if (!ResourceManager.Instance.CanAfford(pendingTowerData.buildCost)) return;
 
-        //ResourceManager.Instance.Spend(pendingTowerData.cost);
+        ResourceManager.Instance.Spend(pendingTowerData.buildCost);
         Instantiate(pendingTowerData.towerPrefab, position, Quaternion.identity);
         CancelPlacement();
     }
