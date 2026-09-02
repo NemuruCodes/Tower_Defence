@@ -3,7 +3,8 @@ using UnityEngine;
 public class TerrainCell 
 {
     public Vector3Int position;
-    public TerrainType type; 
+    public TerrainType type;
+    public bool isSurface;
     public bool IsWalkable() // Overkill right now as  only ground is walkable might add more.
     { 
         return type == TerrainType.Ground; 

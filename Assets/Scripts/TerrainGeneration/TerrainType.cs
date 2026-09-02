@@ -6,7 +6,9 @@ using UnityEngine;
       Ground,
       Mountain,
       Water,
-      Path
+      Path,
+      Target,
+      Spawner
     }
 
 

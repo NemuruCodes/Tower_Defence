@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 //using System;
 
@@ -10,9 +12,12 @@ public class TerrainGenerator : MonoBehaviour
     public float noiseScale = 0.1f;
     public float heightMultiplier = 5f;
 
-    [Header("Seed")]
-    public int seed = 0;
-    public bool useRandomSeed = true;
+    [Header("Tower Plateau")]
+    public bool generateTowerPlateau = true;
+    public int towerPlateauRadius = 5;
+    public int towerFlatHeight = 3; // constant height of the flat disc
+
+    private Vector2Int towerCenter;
 
     [Header("Water")]
     public int waterHeight = 2;
@@ -20,13 +25,19 @@ public class TerrainGenerator : MonoBehaviour
     [Header("Mountain")]
     public int mountainHeight = 4;
 
+    [Header("Spawners")]
+    public int numSpawners = 4;
+    public int edgeMargin = 2;
+
+
     private float offsetX;
     private float offsetZ;
 
     private void Start()
     {
-        GenerateTerrain(); 
-        
+        GenerateTerrain();
+        PlaceObjectives();
+
         TerrainRenderer renderer = GetComponent<TerrainRenderer>(); 
         
         if (renderer != null) 
@@ -57,23 +68,42 @@ public class TerrainGenerator : MonoBehaviour
 
         terrainGrid.CreateGrid();
 
+        towerCenter = new Vector2Int(terrainGrid.width / 2, terrainGrid.depth / 2);
+
         for (int x = 0; x < terrainGrid.width; x++)
         {
             for (int z = 0; z < terrainGrid.depth; z++)
             {
                 //Perlin noise
                 //float noise = Mathf.PerlinNoise((x + offsetX) * noiseScale,(z + offsetZ * noiseScale));
-                float noise = generateNoise(x, z, noiseScale);
+                //float noise = generateNoise(x, z, noiseScale);
 
                 // Convert noise into a height
-                int terrainHeight = Mathf.RoundToInt(noise * heightMultiplier );
+                //int terrainHeight = Mathf.RoundToInt(noise * heightMultiplier );
+
+                int terrainHeight;
+
+                if (generateTowerPlateau && IsInsidePlateau(x, z)) // Reusing the hill stamp idea from ice task
+                {
+                    terrainHeight = towerFlatHeight;
+                }
+                else
+                {
+                    float noise = generateNoise(x, z, noiseScale);
+                    terrainHeight = Mathf.RoundToInt(noise * heightMultiplier);
+                }
+
 
                 for (int y = 0; y < terrainGrid.height; y++)
                 {
                     if (y <= terrainHeight)
                     {
-                        
-                        if (y <= waterHeight)// Below the water level
+                        if (generateTowerPlateau && IsInsidePlateau(x, z))
+                        {
+                            terrainGrid.SetCell(x, y, z, TerrainType.Ground);
+                        }
+
+                        else if (y <= waterHeight)// Below the water level
                         {
                             terrainGrid.SetCell(x,y,z,TerrainType.Water);
                         }
@@ -91,6 +121,11 @@ public class TerrainGenerator : MonoBehaviour
                         terrainGrid.SetCell(x,y,z,TerrainType.Air);
                     }
                 }
+
+                if (terrainHeight >= 0 && terrainHeight < terrainGrid.height)
+                {
+                    terrainGrid.MarkSurface(x, terrainHeight, z);
+                }
             }
         }
     }
@@ -101,6 +136,90 @@ public class TerrainGenerator : MonoBehaviour
         float zNoise = (z + offsetZ) * detailScale;
 
         return Mathf.PerlinNoise(xNoise, zNoise);
+    }
+
+    private bool IsInsidePlateau(int x, int z)
+    {
+        float distSq = (towerCenter.x - x) * (towerCenter.x - x) +
+                        (towerCenter.y - z) * (towerCenter.y - z);
+        return distSq <= towerPlateauRadius * towerPlateauRadius;
+    }
+
+    /* Might spawn tower
+     * [Header("Tower")]
+public GameObject towerPrefab;
+
+private void SpawnTower()
+{
+    if (towerPrefab == null) return;
+
+    Vector3 spawnPos = new Vector3(towerCenter.x, towerFlatHeight + 1, towerCenter.y);
+    Instantiate(towerPrefab, spawnPos, Quaternion.identity, transform);
+}*/
+
+    public void PlaceObjectives()
+    {
+        PlaceTarget();
+        PlaceEdgeSpawners();
+    }
+
+    // ---- Target on plateau center ----
+
+    private void PlaceTarget()
+    {
+        TerrainCell centerCell = terrainGrid.GetSurfaceCell(towerCenter.x, towerCenter.y);
+        if (centerCell == null)
+            return;
+
+        terrainGrid.SetCell(centerCell.position, TerrainType.Target);
+    }
+
+
+    private void PlaceEdgeSpawners()
+    {
+        System.Random rng = new System.Random();
+
+        TryPlaceSpawnerOnLine(rng, edgeMargin, null);                          // west
+        TryPlaceSpawnerOnLine(rng, terrainGrid.width - 1 - edgeMargin, null);  // east
+        TryPlaceSpawnerOnLine(rng, null, edgeMargin);                          // south
+        TryPlaceSpawnerOnLine(rng, null, terrainGrid.depth - 1 - edgeMargin);  // north
+    }
+
+    private void TryPlaceSpawnerOnLine(System.Random rng, int? fixedX, int? fixedZ)
+    {
+        List<TerrainCell> candidates = new List<TerrainCell>();
+
+        if (fixedX.HasValue)
+        {
+            for (int z = 0; z < terrainGrid.depth; z++)
+            {
+                TerrainCell cell = terrainGrid.GetSurfaceCell(fixedX.Value, z);
+                if (IsValidSpawnerCell(cell))
+                    candidates.Add(cell);
+            }
+        }
+        else if (fixedZ.HasValue)
+        {
+            for (int x = 0; x < terrainGrid.width; x++)
+            {
+                TerrainCell cell = terrainGrid.GetSurfaceCell(x, fixedZ.Value);
+                if (IsValidSpawnerCell(cell))
+                    candidates.Add(cell);
+            }
+        }
+
+        if (candidates.Count == 0)
+            return; // whole edge was water/mountain - nothing to place
+
+        TerrainCell chosen = candidates[rng.Next(candidates.Count)];
+        terrainGrid.SetCell(chosen.position, TerrainType.Spawner);
+    }
+
+    private bool IsValidSpawnerCell(TerrainCell cell)
+    {
+        if (cell == null)
+            return false;
+        return cell.type != TerrainType.Water && cell.type != TerrainType.Mountain;
     }
 
 }

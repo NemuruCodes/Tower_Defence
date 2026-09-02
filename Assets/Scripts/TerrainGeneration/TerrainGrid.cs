@@ -9,12 +9,27 @@ public class TerrainGrid : MonoBehaviour
     public int depth = 30;
 
     private TerrainCell[,,] grid;
+    private int[,] surfaceHeight;
+
+    private TerrainCell[,] surfaceCells;
 
 
     // Creates the empty grid
     public void CreateGrid()
     {
         grid = new TerrainCell[width, height, depth];
+
+        surfaceHeight = new int[width, depth];
+
+        surfaceCells = new TerrainCell[width, depth];
+
+        for (int x = 0; x < width; x++)
+        {
+            for (int z = 0; z < depth; z++)
+            {
+                surfaceHeight[x, z] = -1; // default: nothing solid yet
+            }
+        }
 
         for (int x = 0; x < width; x++)
         {
@@ -31,6 +46,19 @@ public class TerrainGrid : MonoBehaviour
     }
 
 
+    public void MarkSurface(int x, int y, int z)
+    {
+        if (!InBounds(x, y, z))
+            return;
+
+        TerrainCell cell = grid[x, y, z];
+        cell.isSurface = true;
+
+        surfaceHeight[x, z] = y;
+        surfaceCells[x, z] = cell; // reference, not a copy - stays in sync with grid
+    }
+
+
     // Get a cell from the grid
     public TerrainCell GetCell(int x, int y, int z)
     {
@@ -38,6 +66,14 @@ public class TerrainGrid : MonoBehaviour
             return null;
 
         return grid[x, y, z];
+    }
+
+
+    public int GetSurfaceHeight(int x, int z)
+    {
+        if (x < 0 || x >= width || z < 0 || z >= depth)
+            return -1;
+        return surfaceHeight[x, z];
     }
 
 
@@ -59,6 +95,25 @@ public class TerrainGrid : MonoBehaviour
             return;
 
         grid[x, y, z].type = type;
+    }
+
+    public void SetCell(Vector3Int position, TerrainType type)
+    {
+        SetCell(position.x, position.y, position.z, type);
+    }
+
+
+
+    public TerrainCell GetSurfaceCell(int x, int z)
+    {
+        if (x < 0 || x >= width || z < 0 || z >= depth)
+            return null;
+        return surfaceCells[x, z];
+    }
+
+    public TerrainCell[,] GetSurfaceCells()
+    {
+        return surfaceCells;
     }
 
 
@@ -125,6 +180,8 @@ public class TerrainGrid : MonoBehaviour
     {
         return IsExposedToAir(position.x, position.y, position.z);
     }
+
+    
 }
 
 

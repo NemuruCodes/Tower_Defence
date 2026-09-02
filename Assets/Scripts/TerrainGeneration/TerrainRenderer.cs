@@ -9,6 +9,8 @@ public class TerrainRenderer : MonoBehaviour
     public GameObject groundPrefab;
     public GameObject waterPrefab;
     public GameObject mountainPrefab;
+    public GameObject targetPrefab;  
+    public GameObject spawnerPrefab; 
 
     public void RenderTerrain()
     {
@@ -16,6 +18,7 @@ public class TerrainRenderer : MonoBehaviour
 
         for (int x = 0; x < terrainGrid.width; x++)
         {
+        
             for (int y = 0; y < terrainGrid.height; y++)
             {
                 for (int z = 0; z < terrainGrid.depth; z++)
@@ -52,6 +55,12 @@ public class TerrainRenderer : MonoBehaviour
 
             case TerrainType.Mountain:
                 return mountainPrefab;
+
+            case TerrainType.Target:
+                return targetPrefab;
+
+            case TerrainType.Spawner:
+                return spawnerPrefab;
 
             default:
                 return null;
