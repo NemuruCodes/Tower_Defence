@@ -6,6 +6,7 @@ public class Tower : MonoBehaviour
 
     [SerializeField] private TowerData data;
     [SerializeField] private RangeIndicator rangeIndicator;
+    [SerializeField] private Transform firePoint;
 
     private float currentHealth;
     private float fireCooldown;
@@ -13,6 +14,9 @@ public class Tower : MonoBehaviour
     private ProjectileBehaviour attackEffect;
     public bool showRangeGizmo = false;
     [SerializeField] private LayerMask enemyMask;
+
+    private IDamageable currentTarget;
+    
 
     private void Awake()
     {
@@ -40,8 +44,7 @@ public class Tower : MonoBehaviour
 
     private void Attack(Transform target)
     {
-        // fire projectile, then on impact call:
-        attackEffect.OnHit(target, data.damage, target.position);
+        attackEffect.Fire(firePoint, target, data.damage);
     }
 
     public void TakeDamage(float amount)

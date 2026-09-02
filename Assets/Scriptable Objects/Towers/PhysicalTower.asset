@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6cc4bd30d30f42040951e3b4dfe035cb, type: 3}
-  m_Name: SplashTest
+  m_Name: PhysicalTower
   m_EditorClassIdentifier: Assembly-CSharp::TowerData
-  towerName: SplashTower
-  towerPrefab: {fileID: 0}
+  towerName: Single Shot Tower
+  towerPrefab: {fileID: 5102370116259581313, guid: 2ed8b61b76626d84abee92aa736d651d, type: 3}
   maxHealth: 100
-  damage: 5
-  range: 8
+  damage: 15
+  range: 10
   fireRate: 1
-  buildCost: 80
-  projectileBehavior: {fileID: 11400000, guid: d07f8848dadbfbf41ac273feb680d479, type: 2}
-  targetingStrategy: {fileID: 11400000, guid: e42833769fba1564f9fbdad641add16a, type: 2}
+  buildCost: 50
+  projectileBehavior: {fileID: 11400000, guid: 8734649281f10df4ea64bf1f62bb1139, type: 2}
+  targetingStrategy: {fileID: 11400000, guid: 3c6e8f70f55e33649867b7d3425080fc, type: 2}

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c81e98fcff7e274db40836aabec5be1, type: 3}
+  m_Name: ProjectileType
+  m_EditorClassIdentifier: Assembly-CSharp::PhysicalProjectileBehaviour
+  projectilePrefab: {fileID: 2684843643645055310, guid: ac6a1e1a4abd4634ca3dc021ba9dbd78, type: 3}
+  hitVisual: {fileID: 1603913580233464223, guid: a696caac79251fc4a8f3f1f92ffa02d7, type: 3}
+  duration: 0.5
+  speed: 15

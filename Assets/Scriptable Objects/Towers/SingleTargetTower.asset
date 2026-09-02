@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6cc4bd30d30f42040951e3b4dfe035cb, type: 3}
-  m_Name: TowerTest
+  m_Name: SingleTargetTower
   m_EditorClassIdentifier: Assembly-CSharp::TowerData
   towerName: Single Attacking Tower
-  towerPrefab: {fileID: 0}
+  towerPrefab: {fileID: 4836157073339295094, guid: fd485467973d59744b0dea173c23de1e, type: 3}
   maxHealth: 100
   damage: 2
   range: 15
   fireRate: 1
+  buildCost: 50
   projectileBehavior: {fileID: 11400000, guid: 25d01380d4f1f4e459c8517bf556fbbd, type: 2}
   targetingStrategy: {fileID: 11400000, guid: 3c6e8f70f55e33649867b7d3425080fc, type: 2}

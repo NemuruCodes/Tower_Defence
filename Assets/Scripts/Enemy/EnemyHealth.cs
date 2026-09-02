@@ -15,6 +15,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         {
             Destroy(gameObject);
         }
+        Debug.Log(currentHealth);
     }
    
 }

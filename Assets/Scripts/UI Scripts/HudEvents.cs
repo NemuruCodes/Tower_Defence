@@ -13,6 +13,8 @@ public class HudEvents : MonoBehaviour
         public TowerData towerData;
     }
 
+   
+
     [SerializeField] private TowerButtonBinding[] towerButtons;
     [SerializeField] private TowerPlacementManager placementManager;
 
@@ -70,6 +72,8 @@ public class HudEvents : MonoBehaviour
                 continue;
             }
 
+            //Debug.Log(button);
+
             TowerData data = binding.towerData; // local copy for the closure
             button.clicked += () => OnTowerSelected(data);
         }
@@ -86,21 +90,43 @@ public class HudEvents : MonoBehaviour
        
     }
 
+    /*
     private void TogglePrompt()
     {
+        //Debug.Log("Toggle Placement Prompt On");
+
         isPlacing = !isPlacing;
         placingContainer.AddToClassList(isPlacing ? "Placing" : "NotPlacing");
         placingContainer.RemoveFromClassList(isPlacing ? "NotPlacing" : "Placing");
     }
+    */
+    private void ShowPrompt()
+    {
+        if (isPlacing) return;
+        isPlacing = true;
+        placingContainer.AddToClassList("Placing");
+        placingContainer.RemoveFromClassList("NotPlacing");
+    }
+
+    private void HidePrompt()
+    {
+        if (!isPlacing) return;
+        isPlacing = false;
+        placingContainer.AddToClassList("NotPlacing");
+        //placingContainer.RemoveFromClassList("Placing");
+    }
 
     private void OnTowerSelected(TowerData towerData)
     {
-        Debug.Log("Begin placement");
-
         placementManager.BeginPlacement(towerData);
 
 
-        TogglePrompt();
+        ShowPrompt();
         ToggleMenu();
+    }
+
+    public void OnPlacementEnd()
+    {
+        HidePrompt();
     }
 }
