@@ -13,8 +13,6 @@ public class HudEvents : MonoBehaviour
         public TowerData towerData;
     }
 
-   
-
     [SerializeField] private TowerButtonBinding[] towerButtons;
     [SerializeField] private TowerPlacementManager placementManager;
 
@@ -22,6 +20,7 @@ public class HudEvents : MonoBehaviour
     private VisualElement panel;
     private VisualElement listContainer;
     private VisualElement placingContainer;
+   
 
     private Button toggleButton;
 
@@ -54,8 +53,6 @@ public class HudEvents : MonoBehaviour
 
         singleAttackTower = root.Q<Button>("SingleTarget");
 
-        
-
         toggleButton.clicked += ToggleMenu;
 
         BindTowerButtons(root);
@@ -85,9 +82,7 @@ public class HudEvents : MonoBehaviour
         isOpen = !isOpen;
         listContainer.AddToClassList(isOpen ? "TowerMenuOpen" : "TowerMenuClosed");
         listContainer.RemoveFromClassList(isOpen ? "TowerMenuClosed" : "TowerMenuOpen");
-        
-
-       
+   
     }
 
     /*
@@ -129,4 +124,6 @@ public class HudEvents : MonoBehaviour
     {
         HidePrompt();
     }
+
+    
 }

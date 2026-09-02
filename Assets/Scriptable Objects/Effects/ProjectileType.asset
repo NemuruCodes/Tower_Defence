@@ -15,4 +15,4 @@ MonoBehaviour:
   projectilePrefab: {fileID: 2684843643645055310, guid: ac6a1e1a4abd4634ca3dc021ba9dbd78, type: 3}
   hitVisual: {fileID: 1603913580233464223, guid: a696caac79251fc4a8f3f1f92ffa02d7, type: 3}
   duration: 0.5
-  speed: 15
+  speed: 25

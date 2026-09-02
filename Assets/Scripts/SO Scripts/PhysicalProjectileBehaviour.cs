@@ -17,6 +17,13 @@ public class PhysicalProjectileBehaviour : ProjectileBehaviour
             damageable.TakeDamage(damage);
             
         }
+
+        if (hitVisual != null)
+        {
+
+            HitVisual visual = Instantiate(hitVisual);
+            visual.Play(hitPosition, duration);
+        }
             
     }
 
@@ -25,8 +32,6 @@ public class PhysicalProjectileBehaviour : ProjectileBehaviour
         Projectile p = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         p.Launch(target, speed, damage, this);
 
-        HitVisual visual = Instantiate(hitVisual);
-        //visual.Play(target.transform, duration);
     }
 
     // Called by Projectile once it reaches the target
