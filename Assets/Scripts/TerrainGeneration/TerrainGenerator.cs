@@ -46,6 +46,10 @@ public class TerrainGenerator : MonoBehaviour
         { 
             renderer.RenderTerrain(); 
         }
+
+        EnemySpawner spawner = GetComponent<EnemySpawner>();
+        if (spawner != null)
+            spawner.BeginSpawning();
     }
 
     public void GenerateTerrain()

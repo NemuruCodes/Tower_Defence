@@ -383,6 +383,55 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &446295055
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 446295057}
+  - component: {fileID: 446295056}
+  m_Layer: 0
+  m_Name: SpawerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &446295056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446295055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06c76c80aa860154f81a119b0ce5d7ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
+  terrainGrid: {fileID: 1506049451}
+  terrainPathfinder: {fileID: 1506049448}
+  enemyPrefab: {fileID: 1782189015}
+  spawnInterval: 1.5
+  enemiesPerSpawner: 5
+--- !u!4 &446295057
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446295055}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 37.18927, y: -0, z: 26.25486}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &634266251
 GameObject:
   m_ObjectHideFlags: 0
@@ -880,19 +929,55 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6648019512408470286, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1506049453}
   m_SourcePrefab: {fileID: 100100000, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
+--- !u!1 &1506049447 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6648019512408470286, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
+  m_PrefabInstance: {fileID: 1313601557}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1506049448 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8006781426738227377, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
   m_PrefabInstance: {fileID: 1313601557}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1506049447}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b8aec5b3eb196241a8d87c2f733859c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TerrainPathfinder
+--- !u!114 &1506049451 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2968010321229220610, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
+  m_PrefabInstance: {fileID: 1313601557}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506049447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b36194fa4c8692545a26e91cf94c8710, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TerrainGrid
+--- !u!114 &1506049453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506049447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06c76c80aa860154f81a119b0ce5d7ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
+  terrainGrid: {fileID: 1506049451}
+  terrainPathfinder: {fileID: 1506049448}
+  enemyPrefab: {fileID: 1782189015}
+  spawnInterval: 1.5
+  enemiesPerSpawner: 5
 --- !u!1 &1610309907
 GameObject:
   m_ObjectHideFlags: 0
@@ -1071,6 +1156,7 @@ GameObject:
   - component: {fileID: 1782189018}
   - component: {fileID: 1782189017}
   - component: {fileID: 1782189016}
+  - component: {fileID: 1782189023}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -1228,6 +1314,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1782189023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782189015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 482a741a13797b64fa51190cde664860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyMover
+  moveSpeed: 3
+  arrivalThreshold: 0.1
+  gravity: -20
+  jumpSpeed: 8
+  groundedSnapThreshold: 0.05
+  jumpStepThreshold: 0.6
+  jumpTriggerDistance: 0.4
 --- !u!1 &1946102097
 GameObject:
   m_ObjectHideFlags: 0
@@ -1599,3 +1704,4 @@ SceneRoots:
   - {fileID: 788398444}
   - {fileID: 1207054159}
   - {fileID: 1313601557}
+  - {fileID: 446295057}

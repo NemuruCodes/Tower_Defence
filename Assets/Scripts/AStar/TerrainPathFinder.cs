@@ -15,10 +15,13 @@ public class TerrainPathfinder : MonoBehaviour
     [Header("Step / Jump Height")]
     public int maxStepHeight = int.MaxValue;
 
+    public Dictionary<Vector2Int, List<Vector2Int>> PathsBySpawner { get; private set; }
+
     public List<List<Vector2Int>> GeneratePathsToTarget()
     {
         var graph = new TerrainSurfaceGraph(terrainGrid, maxStepHeight);
         var allPaths = new List<List<Vector2Int>>();
+        PathsBySpawner = new Dictionary<Vector2Int, List<Vector2Int>>();
 
         Vector2Int? target = FindFirstCellOfType(TerrainType.Target);
         if (target == null)
@@ -46,6 +49,7 @@ public class TerrainPathfinder : MonoBehaviour
 
             MarkPath(path);
             allPaths.Add(path);
+            PathsBySpawner[spawner] = path;
         }
 
         return allPaths;
