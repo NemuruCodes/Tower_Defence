@@ -7,24 +7,21 @@ public class OrbitCameraController : MonoBehaviour
     [Tooltip("The point the camera orbits around")]
     [SerializeField] private Transform target;
 
-    [Tooltip("Find the object with this tag when the scene starts.")]
+    [Tooltip("Find the object with this tag when the scene starts")]
     [SerializeField] private string targetTag = "MainTower";
 
     [Header("Orbit Settings")]
     [Tooltip("Degrees per second when holding A/D.")]
     [SerializeField] private float rotationSpeed = 60f;
 
-    [Tooltip("Smoothly ease rotation speed in/out instead of snapping to full speed instantly.")]
     [SerializeField] private bool smoothRotation = true;
 
-    [Tooltip("How quickly rotation speed eases toward its target value (higher = snappier).")]
     [SerializeField] private float rotationSmoothTime = 0.15f;
 
     [Tooltip("Invert the A/D direction.")]
     [SerializeField] private bool invertRotationDirection = false;
 
     [Header("Distance / Zoom")]
-    [Tooltip("Distance from the camera to the target.")]
     [SerializeField] private float distance = 15f;
 
     [SerializeField] private float minDistance = 5f;
@@ -36,11 +33,10 @@ public class OrbitCameraController : MonoBehaviour
     [SerializeField] private float zoomSpeed = 10f;
 
     [Header("Height / Pitch")]
-    [Tooltip("Vertical angle looking down at the target, in degrees.")]
     [Range(5f, 85f)]
     [SerializeField] private float pitchAngle = 45f;
 
-    [Tooltip("Allow adjusting pitch with Q/E or another input.")]
+    [Tooltip("Allow adjusting pitch with W/S or another input")]
     [SerializeField] private bool allowPitchAdjust = false;
 
     [SerializeField] private float pitchSpeed = 40f;
@@ -67,14 +63,12 @@ public class OrbitCameraController : MonoBehaviour
 
         if (target == null)
         {
-            Debug.LogWarning($"{nameof(OrbitCameraController)}: No target assigned and no object " +
-                              $"with tag \"{targetTag}\" was found. Assign a target in the Inspector, " +
-                              "or tag the main tower and make sure it exists before this script's Start() runs.");
+            Debug.LogWarning($"{nameof(OrbitCameraController)}: No target assigned and no object ");
             return;
         }
 
-        // Initialize yaw from the camera's current position relative to the target,
-        // so it doesn't snap on first frame.
+        // Initialize yaw from the camera's current position relative to the target, so it doesn't snap on first frame
+        
         if (target != null)
         {
             Vector3 offset = transform.position - target.position;
@@ -168,9 +162,9 @@ public class OrbitCameraController : MonoBehaviour
         transform.LookAt(target.position);
     }
 
-    /// <summary>
-    /// Lets other scripts (e.g. a settings menu) reassign the orbit target at runtime.
-    /// </summary>
+    
+    // Lets other scripts reassign the orbit target at runtime
+    
     public void SetTarget(Transform newTarget)
     {
         target = newTarget;
