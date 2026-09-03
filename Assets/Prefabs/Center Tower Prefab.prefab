@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5385921470280516869}
   - component: {fileID: 1511812050941265971}
   - component: {fileID: 6348669450514949969}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Center Tower Prefab
-  m_TagString: Untagged
+  m_TagString: MainTower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -217,6 +217,10 @@ PrefabInstance:
     - target: {fileID: 3580058377894244546, guid: 91742b73480945341b11b05ad7ffc286, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174770109989803020, guid: 91742b73480945341b11b05ad7ffc286, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8211964771145094986, guid: 91742b73480945341b11b05ad7ffc286, type: 3}
       propertyPath: m_Name
