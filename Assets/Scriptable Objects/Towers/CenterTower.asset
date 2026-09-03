@@ -19,5 +19,5 @@ MonoBehaviour:
   range: 100
   fireRate: 1
   buildCost: 0
-  projectileBehavior: {fileID: 11400000, guid: 8734649281f10df4ea64bf1f62bb1139, type: 2}
+  projectileBehavior: {fileID: 11400000, guid: 215a059f0e13509438daa21c2d31f931, type: 2}
   targetingStrategy: {fileID: 11400000, guid: e42833769fba1564f9fbdad641add16a, type: 2}

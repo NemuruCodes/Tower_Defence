@@ -39,7 +39,7 @@ Material:
     - _Surface: 0
     - _ZWrite: 1
     m_Colors:
-    - _FresnalColor: {r: 2, g: 0.6201992, b: 0, a: 1}
+    - _FresnalColor: {r: 7.9999995, g: 2.4807966, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &4952571406474937648
