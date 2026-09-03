@@ -10,8 +10,6 @@ public class Projectile : MonoBehaviour
 
     private float lifetime = 10f;
 
-    private float duration = 0.5f;
-
     private PhysicalProjectileBehaviour source;
 
     

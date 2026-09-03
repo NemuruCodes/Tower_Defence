@@ -79,8 +79,6 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
-    //public bool CanAfford(int amount) => CurrentResources >= amount;
-
     public bool CanAfford(int amount)
     {
         return CurrentResources >= amount;

@@ -3,6 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 
+//https://docs.unity3d.com/Manual/ui-systems/introduction-ui-toolkit.html
+//https://docs.unity3d.com/Manual/ui-systems/introduction-ui-toolkit.html
+//https://docs.unity3d.com/Manual/UIBuilder.html
+//https://docs.unity3d.com/Manual/UIE-Controls.html
+//https://www.youtube.com/watch?v=qm59GPmNtek animated menus and UI toolkit animations
+//https://unity.com/resources/user-interface-design-and-implementation-in-unity?ungated=true unity UI E-book
+//https://www.youtube.com/watch?v=_jtj73lu2Ko&t=2s UI toolkit introduction
+
 [RequireComponent(typeof(PanelRenderer))]
 public class HudEvents : MonoBehaviour
 {
@@ -71,11 +79,33 @@ public class HudEvents : MonoBehaviour
 
             //Debug.Log(button);
 
-            TowerData data = binding.towerData; // local copy for the closure
+            TowerData data = binding.towerData; 
             button.clicked += () => OnTowerSelected(data);
+
+            PopulateTowerStats(button, data);
         }
     }
 
+    private void PopulateTowerStats(Button button, TowerData data)
+    {
+        if (data == null) return;
+
+        // Q<Label>() searches this button's own descendants so the same names for labels can repeat
+        
+        SetLabelText(button, "CostLabel", data.buildCost.ToString());
+        SetLabelText(button, "DamageLabel", data.damage.ToString());
+        SetLabelText(button, "RangeLabel", data.range.ToString());
+    }
+    private void SetLabelText(Button button, string labelName, string value)
+    {
+        Label label = button.Q<Label>(labelName);
+        if (label == null)
+        {
+            Debug.LogWarning($"HudEvents: no label named '{labelName}' found inside button '{button.name}'.");
+            return;
+        }
+        label.text = value;
+    }
 
     private void ToggleMenu()
     {

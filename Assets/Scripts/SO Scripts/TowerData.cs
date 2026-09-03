@@ -1,5 +1,7 @@
 using UnityEngine;
 
+//https://learn.unity.com/tutorial/strategy-pattern
+
 [CreateAssetMenu(fileName = "TowerData", menuName = "Scriptable Objects/TowerData")]
 public class TowerData : ScriptableObject
 {

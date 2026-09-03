@@ -31,16 +31,10 @@
     -unity-text-outline-width: 0;
     -unity-text-outline-color: rgba(0, 0, 0, 0);
     color: rgb(255, 255, 255);
-    font-size: 18px;
+    font-size: 25px;
     text-shadow: 1102376px 1121156px 0 rgb(0, 0, 0);
     height: 150px;
 }
-
-
-
-
-
-
 
 .TowerMenuOpen {
     flex-grow: 1;
@@ -92,4 +86,11 @@
 
 .tower-button {
     margin-right: 4px;
+}
+
+
+
+.button:hover {
+    scale: 1.1 1.1 1.1;
+    transition-duration: 0.35s;
 }

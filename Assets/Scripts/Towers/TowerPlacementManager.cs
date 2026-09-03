@@ -35,6 +35,7 @@ public class TowerPlacementManager : MonoBehaviour
         if (selectionManager != null) selectionManager.enabled = false;
     }
 
+    // find lowest point of the mesh
     private float CalculatePivotOffset(GameObject instance)
     {
         Renderer[] renderers = instance.GetComponentsInChildren<Renderer>();
@@ -72,7 +73,7 @@ public class TowerPlacementManager : MonoBehaviour
             CancelPlacement();
     }
 
-    private void TryConfirmPlacement(Vector3 position)
+    private void TryConfirmPlacement(Vector3 position) // check for resources first
     {
         if (!ResourceManager.Instance.CanAfford(pendingTowerData.buildCost)) return;
 
@@ -95,10 +96,10 @@ public class TowerPlacementManager : MonoBehaviour
 
     private void SetGhostVisuals(GameObject ghost)
     {
-        // disable the real Tower logic so the ghost doesn't attack/track health
+        // disable the real Tower logic so the ghost doesn't attack enemies
         if (ghost.TryGetComponent(out Tower towerScript)) towerScript.enabled = false;
 
-        // disable colliders so the ghost doesn't block its own raycast or get "selected"
+        // disable colliders so the ghost doesn't block its own raycast or get selected
         foreach (var col in ghost.GetComponentsInChildren<Collider>())
             col.enabled = false;
 

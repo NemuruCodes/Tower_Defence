@@ -1,7 +1,10 @@
 using System.Linq;
 using UnityEngine;
+using System;
 
-public class Tower : MonoBehaviour
+//https://chandler-lane.medium.com/tower-defense-architecture-in-unity-dynamic-tower-targeting-cdcf79d404c9
+
+public class Tower : MonoBehaviour, IDamageable
 {
 
     [SerializeField] private TowerData data;
@@ -16,7 +19,10 @@ public class Tower : MonoBehaviour
     [SerializeField] private LayerMask enemyMask;
 
     private IDamageable currentTarget;
-    
+
+    public float CurrentHealth => currentHealth;
+
+    public event Action OnDeath;
 
     private void Awake()
     {
@@ -50,7 +56,13 @@ public class Tower : MonoBehaviour
     public void TakeDamage(float amount)
     {
         currentHealth -= amount;
-        if (currentHealth <= 0f) Destroy(gameObject);
+        if (currentHealth <= 0f) Die();
+    }
+
+    private void Die()
+    {
+        OnDeath?.Invoke();
+        Destroy(gameObject);
     }
 
     public void Select() => rangeIndicator.Show();
