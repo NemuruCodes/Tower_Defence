@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 7913376654129060165}
   - component: {fileID: 7712681246457215525}
   - component: {fileID: 748910303681718412}
+  - component: {fileID: 4206410527677189354}
   m_Layer: 6
   m_Name: ProjectileTower
   m_TagString: Untagged
@@ -271,6 +272,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RangeIndicator
   segments: 64
   yOffset: 0.05
+--- !u!114 &4206410527677189354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4890464631777073238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3adbaca78cbbec4486f44c14dca12df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tower
+  data: {fileID: 11400000, guid: cd146f28ebc5f3143819f5c7d0d6961c, type: 2}
+  rangeIndicator: {fileID: 748910303681718412}
+  firePoint: {fileID: 1397503486632997459}
+  showRangeGizmo: 0
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1001 &7477775221904182066
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -344,9 +364,6 @@ PrefabInstance:
       addedObject: {fileID: 2038202932386509760}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c9faf9575bc71f54ba1836626156262e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 394605804077606250}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c9faf9575bc71f54ba1836626156262e, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1148444170309870958}
   m_SourcePrefab: {fileID: 100100000, guid: c9faf9575bc71f54ba1836626156262e, type: 3}
 --- !u!4 &6939164734225411289 stripped
@@ -381,25 +398,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2534964839176971238, guid: c9faf9575bc71f54ba1836626156262e, type: 3}
---- !u!114 &394605804077606250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7712147334760248931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3adbaca78cbbec4486f44c14dca12df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Tower
-  data: {fileID: 11400000, guid: cd146f28ebc5f3143819f5c7d0d6961c, type: 2}
-  rangeIndicator: {fileID: 748910303681718412}
-  firePoint: {fileID: 1397503486632997459}
-  showRangeGizmo: 0
-  enemyMask:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!114 &1148444170309870958
 MonoBehaviour:
   m_ObjectHideFlags: 0

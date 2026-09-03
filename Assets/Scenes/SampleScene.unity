@@ -205,13 +205,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.043619405, y: 0, z: 0, w: 0.9990483}
-  m_LocalPosition: {x: 0, y: 10, z: -25.6}
+  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: 50, y: 50, z: -7.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 5, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,7 +494,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7264517225667938388, guid: 294da273b7454974cb7b5e9f9a7d4380, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.82
+      value: -48.98
       objectReference: {fileID: 0}
     - target: {fileID: 7264517225667938388, guid: 294da273b7454974cb7b5e9f9a7d4380, type: 3}
       propertyPath: m_LocalPosition.y
@@ -768,7 +768,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3028129268150053879, guid: 2ed8b61b76626d84abee92aa736d651d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.04
+      value: -66.84
       objectReference: {fileID: 0}
     - target: {fileID: 3028129268150053879, guid: 2ed8b61b76626d84abee92aa736d651d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1135,7 +1135,7 @@ Transform:
   m_GameObject: {fileID: 1650273551}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.16588843, z: 0}
+  m_LocalPosition: {x: -57.8, y: -0.16588843, z: 0}
   m_LocalScale: {x: 2.0627, y: 1, z: 2.5299}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1190,7 +1190,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1782189015}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
@@ -1217,7 +1217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e54ba8185b10d63459259302f0ad186c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 200
+  maxHealth: 100
   resourceReward: 50
 --- !u!136 &1782189019
 CapsuleCollider:
@@ -1679,6 +1679,10 @@ PrefabInstance:
     - target: {fileID: 8309106261262172521, guid: 906479bb00075e745baef7ccb276fb27, type: 3}
       propertyPath: m_Name
       value: Center Tower Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309106261262172521, guid: 906479bb00075e745baef7ccb276fb27, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
