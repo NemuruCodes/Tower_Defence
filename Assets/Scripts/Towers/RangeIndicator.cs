@@ -28,6 +28,7 @@ public class RangeIndicator : MonoBehaviour
     public void SetRadius(float radius)
     {
         EnsureInitialized();
+        Vector3 center = transform.position;
 
         for (int i = 0; i < segments; i++)
         {
