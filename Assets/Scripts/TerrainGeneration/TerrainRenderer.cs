@@ -11,6 +11,7 @@ public class TerrainRenderer : MonoBehaviour
     public GameObject mountainPrefab;
     public GameObject targetPrefab;  
     public GameObject spawnerPrefab; 
+    public GameObject pathPrefab;
 
     public void RenderTerrain()
     {
@@ -61,6 +62,9 @@ public class TerrainRenderer : MonoBehaviour
 
             case TerrainType.Spawner:
                 return spawnerPrefab;
+
+            case TerrainType.Path:
+                return pathPrefab;
 
             default:
                 return null;

@@ -7,6 +7,7 @@ public class TerrainGenerator : MonoBehaviour
 {
     [Header("References")]
     public TerrainGrid terrainGrid;
+    public TerrainPathfinder terrainPathfinder;
 
     [Header("Noise")]
     public float noiseScale = 0.1f;
@@ -37,6 +38,7 @@ public class TerrainGenerator : MonoBehaviour
     {
         GenerateTerrain();
         PlaceObjectives();
+        terrainPathfinder.GeneratePathsToTarget();
 
         TerrainRenderer renderer = GetComponent<TerrainRenderer>(); 
         

@@ -7,7 +7,7 @@ public class TerrainCell
     public bool isSurface;
     public bool IsWalkable() // Overkill right now as  only ground is walkable might add more.
     { 
-        return type == TerrainType.Ground; 
+        return type == TerrainType.Ground || type == TerrainType.Path || type == TerrainType.Target || type == TerrainType.Spawner;
     }
 
     public TerrainCell(Vector3Int position, TerrainType type) 
