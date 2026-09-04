@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TowerData
   towerName: Beam Tower
   towerPrefab: {fileID: 7271819716359860151, guid: 4e9a1d23b18cb12479c44d9d89933709, type: 3}
-  maxHealth: 100
+  maxHealth: 150
   damage: 3
   range: 10
   fireRate: 15

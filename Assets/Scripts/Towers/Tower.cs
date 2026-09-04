@@ -25,6 +25,8 @@ public class Tower : MonoBehaviour, IDamageable
 
     public event Action OnDeath;
 
+    [SerializeField] private HealthBar healthBar;
+
     private void Awake()
     {
         currentHealth = data.maxHealth;
@@ -32,6 +34,7 @@ public class Tower : MonoBehaviour, IDamageable
         attackEffect = data.projectileBehavior;
 
         rangeIndicator.SetRadius(data.range);
+        healthBar.SetHealth(currentHealth, data.maxHealth);
     }
 
     private void Update()
@@ -57,6 +60,8 @@ public class Tower : MonoBehaviour, IDamageable
     public void TakeDamage(float amount)
     {
         currentHealth -= amount;
+        healthBar.SetHealth(currentHealth, data.maxHealth);
+
         if (currentHealth <= 0f) Die();
     }
 
