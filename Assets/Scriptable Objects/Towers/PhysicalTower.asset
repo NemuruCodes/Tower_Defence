@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TowerData
   towerName: Single Shot Tower
   towerPrefab: {fileID: 4890464631777073238, guid: 9cfc514911ca7774bb36c9f7b6912d5b, type: 3}
-  maxHealth: 100
+  maxHealth: 200
   damage: 15
   range: 15
-  fireRate: 1
+  fireRate: 1.5
   buildCost: 50
   projectileBehavior: {fileID: 11400000, guid: 8734649281f10df4ea64bf1f62bb1139, type: 2}
   targetingStrategy: {fileID: 11400000, guid: 3c6e8f70f55e33649867b7d3425080fc, type: 2}

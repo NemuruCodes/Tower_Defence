@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -34,6 +35,13 @@ public class TerrainGenerator : MonoBehaviour
     private float offsetX;
     private float offsetZ;
 
+    public event Action<Vector3> OnTowerSpawnPointReady;
+
+    public Vector3 GetTowerSpawnPosition()
+    {
+        return new Vector3(towerCenter.x, towerFlatHeight + 1, towerCenter.y);
+    }
+
     private void Start()
     {
         GenerateTerrain();
@@ -50,6 +58,8 @@ public class TerrainGenerator : MonoBehaviour
         EnemySpawner spawner = GetComponent<EnemySpawner>();
         if (spawner != null)
             spawner.BeginSpawning();
+
+        OnTowerSpawnPointReady?.Invoke(GetTowerSpawnPosition());
     }
 
     public void GenerateTerrain()
@@ -151,17 +161,6 @@ public class TerrainGenerator : MonoBehaviour
         return distSq <= towerPlateauRadius * towerPlateauRadius;
     }
 
-    /* Might spawn tower
-     * [Header("Tower")]
-public GameObject towerPrefab;
-
-private void SpawnTower()
-{
-    if (towerPrefab == null) return;
-
-    Vector3 spawnPos = new Vector3(towerCenter.x, towerFlatHeight + 1, towerCenter.y);
-    Instantiate(towerPrefab, spawnPos, Quaternion.identity, transform);
-}*/
 
     public void PlaceObjectives()
     {

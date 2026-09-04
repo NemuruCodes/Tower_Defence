@@ -11,6 +11,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     [SerializeField] private int resourceReward = 50;
 
+    [SerializeField] private HealthBar healthBar;
+
     private void Awake() => currentHealth = maxHealth;
 
     public void TakeDamage(float amount)
@@ -24,6 +26,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
             Die();
         }
         Debug.Log(currentHealth);
+
+        healthBar.SetHealth(currentHealth, maxHealth);
     }
 
     private void Die()
