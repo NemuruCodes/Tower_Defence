@@ -27,7 +27,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void Level1()
     {
-        PlayGame("Level 1");
+        PlayGame("MainLevel");
     }
     public void Level2()
     {

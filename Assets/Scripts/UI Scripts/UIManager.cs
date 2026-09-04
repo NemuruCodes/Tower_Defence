@@ -7,20 +7,13 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
-    [Header("UI Text Elements")]
-    public TextMeshProUGUI livesText;
-    public TextMeshProUGUI coinsText;
 
     private string Settings = "SettingsMenu";
     private string mainMenu = "MainMenu";
 
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject Hud;
-    [SerializeField] private GameObject gameOverMenu;
-    [SerializeField] private GameObject gameWinMenu;
-    [SerializeField] private GameObject LevelPicker;
-    [SerializeField] private GameObject victoryPanel;
-    [SerializeField] private TMP_Text victoryScoreText;
+    
 
 
     private bool isPaused = false;
@@ -30,10 +23,12 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        //if (input.PausePressed)
-        //{
-        //    PauseMenuControle();
-       // }
+        bool PausePressed = Input.GetKeyDown(KeyCode.Escape);
+
+        if (PausePressed)
+        {
+            PauseMenuControle();
+        }
     }
 
 
@@ -43,15 +38,9 @@ public class UIManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    public void UpdateLives(int lives)
-    {
-        livesText.text = "Lives: " + lives;
-    }
+   
 
-    public void UpdateCoins(int coins)
-    {
-        coinsText.text = "Coins: " + coins;
-    }
+    
 
   //  private void OnEnable()
    // {
@@ -135,44 +124,4 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void GameOverMenu()
-    {
-
-        Time.timeScale = 0f;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        gameOverMenu.SetActive(true);
-
-    }
-
-    public void GameWin()
-    {
-
-        Time.timeScale = 0f;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        gameWinMenu.SetActive(true);
-
-    }
-
-    public void LevelSelect()
-    {
-
-        Time.timeScale = 0f;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        LevelPicker.SetActive(true);
-
-    }
-
-    public void VictoryScreen(int score)
-    {
-        Time.timeScale = 0f;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        gameOverMenu.SetActive(false);
-
-        victoryPanel.SetActive(true);
-        victoryScoreText.text = "Coins: " + score;
-    }
 }
