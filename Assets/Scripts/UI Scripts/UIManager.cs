@@ -108,8 +108,8 @@ public class UIManager : MonoBehaviour
             isPaused = true;
             FreezeGame();
 
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            //Cursor.lockState = CursorLockMode.None;
+            //Cursor.visible = true;
         }
 
         else if (isPaused == true)
@@ -119,8 +119,8 @@ public class UIManager : MonoBehaviour
             isPaused = false;
             UnFreezeGame();
 
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            //Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.visible = false;
         }
     }
 

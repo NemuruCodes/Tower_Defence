@@ -15,9 +15,9 @@ MonoBehaviour:
   towerName: Center Tower
   towerPrefab: {fileID: 6196530488297049178, guid: 74b361dd00b4d7c4ebd79efe16551136, type: 3}
   maxHealth: 1000
-  damage: 20
+  damage: 50
   range: 100
-  fireRate: 2
+  fireRate: 0.2
   buildCost: 0
   projectileBehavior: {fileID: 11400000, guid: 215a059f0e13509438daa21c2d31f931, type: 2}
   targetingStrategy: {fileID: 11400000, guid: e42833769fba1564f9fbdad641add16a, type: 2}
