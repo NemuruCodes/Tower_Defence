@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 4594789120388422148}
   - component: {fileID: 364570409770750298}
   - component: {fileID: 188588328247556857}
+  - component: {fileID: 4503108331617811981}
   m_Layer: 6
   m_Name: BeamTower 1
   m_TagString: Untagged
@@ -291,6 +292,24 @@ MonoBehaviour:
   enemyMask:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &4503108331617811981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7271819716359860151}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &221572876578853428
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -358,9 +377,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a90ee65e6a78a5e49a35e000326b054e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8877273606455150357}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a90ee65e6a78a5e49a35e000326b054e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3587697403501214596}
   m_SourcePrefab: {fileID: 100100000, guid: a90ee65e6a78a5e49a35e000326b054e, type: 3}
 --- !u!4 &331461137657066975 stripped
 Transform:
@@ -394,21 +410,3 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7387706064836869012, guid: a90ee65e6a78a5e49a35e000326b054e, type: 3}
---- !u!114 &3587697403501214596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1140051216820416357}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Outline
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []

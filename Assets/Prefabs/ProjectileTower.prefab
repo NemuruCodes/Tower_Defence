@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 7712681246457215525}
   - component: {fileID: 748910303681718412}
   - component: {fileID: 4206410527677189354}
+  - component: {fileID: 2292799347794899884}
   m_Layer: 6
   m_Name: ProjectileTower
   m_TagString: Untagged
@@ -174,7 +175,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -291,6 +292,24 @@ MonoBehaviour:
   enemyMask:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &2292799347794899884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4890464631777073238}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &7477775221904182066
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -362,9 +381,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c9faf9575bc71f54ba1836626156262e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2038202932386509760}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c9faf9575bc71f54ba1836626156262e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1148444170309870958}
   m_SourcePrefab: {fileID: 100100000, guid: c9faf9575bc71f54ba1836626156262e, type: 3}
 --- !u!4 &6939164734225411289 stripped
 Transform:
@@ -398,21 +414,3 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2534964839176971238, guid: c9faf9575bc71f54ba1836626156262e, type: 3}
---- !u!114 &1148444170309870958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7712147334760248931}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Outline
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
