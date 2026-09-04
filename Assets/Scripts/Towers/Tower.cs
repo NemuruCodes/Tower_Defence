@@ -27,6 +27,8 @@ public class Tower : MonoBehaviour, IDamageable
 
     [SerializeField] private HealthBar healthBar;
 
+    public bool isCenterTower;
+
     private void Awake()
     {
         currentHealth = data.maxHealth;
@@ -68,6 +70,8 @@ public class Tower : MonoBehaviour, IDamageable
     private void Die()
     {
         OnDeath?.Invoke();
+
+
         Destroy(gameObject);
     }
 

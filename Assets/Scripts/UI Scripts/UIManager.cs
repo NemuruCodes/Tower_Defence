@@ -13,7 +13,9 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject Hud;
-    
+    [SerializeField] private GameObject gameWonMenu;
+    [SerializeField] private GameObject gameLostMenu;
+
 
 
     private bool isPaused = false;
@@ -122,6 +124,20 @@ public class UIManager : MonoBehaviour
             //Cursor.lockState = CursorLockMode.Locked;
             //Cursor.visible = false;
         }
+    }
+
+    public void WonGame()
+    {
+        gameWonMenu.SetActive(true);
+        Hud.SetActive(false);
+        FreezeGame();
+    }
+
+    public void LostGame()
+    {
+        gameLostMenu.SetActive(true);
+        Hud.SetActive(false);
+        FreezeGame();
     }
 
 }

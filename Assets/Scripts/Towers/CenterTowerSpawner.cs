@@ -5,8 +5,11 @@ public class CenterTowerSpawner : MonoBehaviour
     [Header("References")]
     public TerrainGenerator terrainGenerator;
     public GameObject towerPrefab;
+    public UIManager uiManager;
 
     public OrbitCameraController orbitCamera;
+
+    private Tower currentTower;
 
     private void OnEnable()
     {
@@ -27,6 +30,22 @@ public class CenterTowerSpawner : MonoBehaviour
         if (orbitCamera != null)
         {
             orbitCamera.SetTarget(tower.transform);
+        }
+
+        currentTower = tower.GetComponent<Tower>();
+        if (currentTower != null)
+        {
+            currentTower.isCenterTower = true;
+            currentTower.OnDeath += HandleCenterTowerDeath;
+        }
+    }
+
+    private void HandleCenterTowerDeath()
+    {
+        currentTower.OnDeath -= HandleCenterTowerDeath; 
+        if (uiManager != null)
+        {
+            uiManager.LostGame();
         }
     }
 }

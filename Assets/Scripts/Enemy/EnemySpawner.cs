@@ -11,6 +11,7 @@ public class EnemySpawner : MonoBehaviour
     public TerrainGrid terrainGrid;
     public TerrainPathfinder terrainPathfinder;
     public GameObject enemyPrefab;
+    public UIManager uiManager;
 
     [Header("Spawning")]
     public float spawnInterval = 1.5f;
@@ -24,8 +25,8 @@ public class EnemySpawner : MonoBehaviour
     public float initialDelay = 2f;
 
     [Header("Events")]
-    public Action<int> OnWaveStarted;      // wave number (1-based)
-    public Action<int> OnWaveCompleted;    // wave number (1-based)
+    public Action<int> OnWaveStarted;      
+    public Action<int> OnWaveCompleted;    
     public Action OnAllWavesCompleted;
 
     private Dictionary<Vector2Int, List<Vector2Int>> pathsBySpawner;
@@ -66,8 +67,6 @@ public class EnemySpawner : MonoBehaviour
             OnWaveStarted?.Invoke(currentWave);
             UpdateWaveCounter();
 
-
-            // Spawn this wave across every spawner path in parallel, and wait for spawning to finish.
             List<Coroutine> waveRoutines = new List<Coroutine>();
             foreach (KeyValuePair<Vector2Int, List<Vector2Int>> kvp in pathsBySpawner)
             {
@@ -76,13 +75,18 @@ public class EnemySpawner : MonoBehaviour
             foreach (Coroutine routine in waveRoutines)
                 yield return routine;
 
-            // Now wait for every enemy from this wave to actually die (or otherwise be removed).
             yield return new WaitUntil(() => aliveEnemies <= 0);
 
             OnWaveCompleted?.Invoke(currentWave);
 
             if (currentWave < waveCount)
+            {
                 yield return new WaitForSeconds(delayBetweenWaves);
+            }
+            else if (currentWave >= waveCount)
+            {
+                uiManager.WonGame(); 
+            }
             
         }
 
