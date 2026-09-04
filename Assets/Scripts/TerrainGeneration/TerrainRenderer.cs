@@ -1,5 +1,7 @@
 using UnityEngine;
 
+//https://youtube.com/playlist?list=PLFt_AvWsXl0eBW2EiBtl_sxmDtSgZBxB3&si=hIrlMtp2-izvw6W3 - Procedural Terrain Generation playlist
+
 public class TerrainRenderer : MonoBehaviour
 {
     [Header("References")]

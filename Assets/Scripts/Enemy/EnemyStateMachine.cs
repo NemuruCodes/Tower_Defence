@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.AI;
 
 //https://www.youtube.com/watch?v=jnETyJUiCiM
+//https://www.wayline.io/blog/unity-enemy-ai-finite-state-machine - State Machine
+//https://gamedevbeginner.com/state-machines-in-unity-how-and-when-to-use-them/ - State Machine
+//https://docs.unity3d.com/ScriptReference/LayerMask.html- LayerMasks
 
 
 public enum EnemyState

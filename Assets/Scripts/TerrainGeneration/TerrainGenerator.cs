@@ -4,6 +4,10 @@ using TMPro;
 using UnityEngine;
 //using System;
 
+//https://youtube.com/playlist?list=PLFt_AvWsXl0eBW2EiBtl_sxmDtSgZBxB3&si=hIrlMtp2-izvw6W3 - Procedural Terrain Generation playlist
+//https://www.youtube.com/watch?v=EvqdcyTgZNg -  Events
+//https://docs.unity3d.com/ScriptReference/Mathf.PerlinNoise.html-  Perlin  Noise
+
 public class TerrainGenerator : MonoBehaviour
 {
     [Header("References")]
@@ -168,8 +172,8 @@ public class TerrainGenerator : MonoBehaviour
         PlaceEdgeSpawners();
     }
 
-    // ---- Target on plateau center ----
 
+    //The plateau center is the center for the tower
     private void PlaceTarget()
     {
         TerrainCell centerCell = terrainGrid.GetSurfaceCell(towerCenter.x, towerCenter.y);
@@ -214,7 +218,7 @@ public class TerrainGenerator : MonoBehaviour
         }
 
         if (candidates.Count == 0)
-            return; // whole edge was water/mountain - nothing to place
+            return; 
 
         TerrainCell chosen = candidates[rng.Next(candidates.Count)];
         terrainGrid.SetCell(chosen.position, TerrainType.Spawner);

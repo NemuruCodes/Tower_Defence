@@ -1,5 +1,8 @@
 using UnityEngine;
 
+//https://learn.microsoft.com/en-us/dotnet/api/system.array?view=net-10.0 - Arrays
+//https://youtube.com/playlist?list=PLFt_AvWsXl0eBW2EiBtl_sxmDtSgZBxB3&si=hIrlMtp2-izvw6W3 - Procedural Terrain Generation
+
 
 public class TerrainGrid : MonoBehaviour
 {
@@ -88,7 +91,7 @@ public class TerrainGrid : MonoBehaviour
     }
 
 
-    // Change the type of a cell
+    // This Changes the type of a cell
     public void SetCell(int x, int y, int z, TerrainType type)
     {
         if (!InBounds(x, y, z))
@@ -136,7 +139,6 @@ public class TerrainGrid : MonoBehaviour
     }
 
 
-    // Check whether a cell can be walked on
     public bool IsWalkable(int x, int y, int z)
     {
         TerrainCell cell = GetCell(x, y, z);
