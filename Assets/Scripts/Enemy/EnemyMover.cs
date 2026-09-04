@@ -16,69 +16,51 @@ public class EnemyMover : MonoBehaviour
     [Tooltip("Any upward step bigger than this triggers a jump instead of just walking up.")]
     public float jumpStepThreshold = 0.6f;
 
-    [Tooltip("How close (horizontally) to the next cell before the jump is triggered.")]
+    [Tooltip("How close (horizontally) to a target column before the jump is triggered.")]
     public float jumpTriggerDistance = 0.4f;
 
-    /// <summary>Invoked once the enemy reaches the final waypoint (the Target).</summary>
-    public System.Action OnTargetReached;
+    public bool IsGrounded { get; private set; } = true;
 
     private TerrainGrid grid;
-    private List<Vector3> waypoints;
-    private int waypointIndex;
     private float verticalVelocity;
-    private bool grounded;
-    private bool hasJumpedForCurrentSegment;
+    private bool hasJumpedThisSegment;
 
-    public void Initialize(TerrainGrid terrainGrid, List<Vector2Int> path)
+    public void Initialize(TerrainGrid terrainGrid)
     {
         grid = terrainGrid;
-        waypoints = BuildWaypoints(path);
-        waypointIndex = 0;
         verticalVelocity = 0f;
-        grounded = true;
-        hasJumpedForCurrentSegment = false;
-
-        if (waypoints.Count > 0)
-            transform.position = waypoints[0];
+        IsGrounded = true;
+        hasJumpedThisSegment = false;
     }
 
-    private List<Vector3> BuildWaypoints(List<Vector2Int> path)
+    public void Warp(Vector3 worldPosition)
     {
-        var result = new List<Vector3>(path.Count);
-        foreach (Vector2Int cell in path)
-        {
-            float y = grid.GetSurfaceHeight(cell.x, cell.y) + 1f; // stand on top of the surface block
-            result.Add(new Vector3(cell.x, y, cell.y));
-        }
-        return result;
+        transform.position = worldPosition;
+        verticalVelocity = 0f;
+        IsGrounded = true;
+        hasJumpedThisSegment = false;
     }
 
-    private void Update()
+    public void ResetSegment()
     {
-        if (waypoints == null || waypoints.Count == 0 || waypointIndex >= waypoints.Count)
-            return;
-
-        MoveTowardCurrentWaypoint();
-        ApplyGravityAndGround();
+        hasJumpedThisSegment = false;
     }
 
-    private void MoveTowardCurrentWaypoint()
+    public bool MoveToward(Vector3 target, bool allowJump)
     {
-        Vector3 target = waypoints[waypointIndex];
         Vector3 flatPos = new Vector3(transform.position.x, 0f, transform.position.z);
         Vector3 flatTarget = new Vector3(target.x, 0f, target.z);
-
         float horizontalDistance = Vector3.Distance(flatPos, flatTarget);
 
-        // Trigger a jump just before stepping onto a noticeably higher cell.
-        if (grounded && !hasJumpedForCurrentSegment && horizontalDistance <= jumpTriggerDistance)
+        if (allowJump && IsGrounded && !hasJumpedThisSegment && horizontalDistance <= jumpTriggerDistance)
         {
-            float heightDiff = target.y - transform.position.y;
+            float targetGroundY = GetGroundY(target.x, target.z);
+            float heightDiff = targetGroundY - transform.position.y;
             if (heightDiff > jumpStepThreshold)
             {
                 verticalVelocity = jumpSpeed;
-                grounded = false;
-                hasJumpedForCurrentSegment = true;
+                IsGrounded = false;
+                hasJumpedThisSegment = true;
             }
         }
 
@@ -95,32 +77,23 @@ public class EnemyMover : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
         }
 
-        if (horizontalDistance <= arrivalThreshold && grounded)
-        {
-            AdvanceWaypoint();
-        }
+        ApplyGravityAndGround();
+
+        return horizontalDistance <= arrivalThreshold && IsGrounded;
     }
 
-    private void AdvanceWaypoint()
+    public void HoldGround()
     {
-        waypointIndex++;
-        hasJumpedForCurrentSegment = false;
-
-        if (waypointIndex >= waypoints.Count)
-            OnTargetReached?.Invoke();
+        ApplyGravityAndGround();
     }
 
     private void ApplyGravityAndGround()
     {
-        int gx = Mathf.RoundToInt(transform.position.x);
-        int gz = Mathf.RoundToInt(transform.position.z);
-        float groundY = grid.GetSurfaceHeight(gx, gz) + 1f;
-
+        float groundY = GetGroundY(transform.position.x, transform.position.z);
         Vector3 pos = transform.position;
 
         if (pos.y > groundY + groundedSnapThreshold)
         {
-            // Airborne - apply gravity.
             verticalVelocity += gravity * Time.deltaTime;
             pos.y += verticalVelocity * Time.deltaTime;
 
@@ -128,21 +101,27 @@ public class EnemyMover : MonoBehaviour
             {
                 pos.y = groundY;
                 verticalVelocity = 0f;
-                grounded = true;
+                IsGrounded = true;
             }
             else
             {
-                grounded = false;
+                IsGrounded = false;
             }
         }
         else
         {
-            // On or below ground level for this column - snap onto it.
             pos.y = groundY;
             verticalVelocity = 0f;
-            grounded = true;
+            IsGrounded = true;
         }
 
         transform.position = pos;
+    }
+
+    private float GetGroundY(float worldX, float worldZ)
+    {
+        int gx = Mathf.RoundToInt(worldX);
+        int gz = Mathf.RoundToInt(worldZ);
+        return grid.GetSurfaceHeight(gx, gz) + 1f;
     }
 }

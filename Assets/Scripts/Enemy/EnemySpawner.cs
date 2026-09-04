@@ -15,6 +15,9 @@ public class EnemySpawner : MonoBehaviour
 
     private Dictionary<Vector2Int, List<Vector2Int>> pathsBySpawner;
 
+    /// <summary>
+    /// Call this after TerrainPathfinder.GeneratePathsToTarget() has run.
+    /// </summary>
     public void BeginSpawning()
     {
         pathsBySpawner = terrainPathfinder.PathsBySpawner;
@@ -50,17 +53,22 @@ public class EnemySpawner : MonoBehaviour
 
         GameObject enemyObj = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
 
-        EnemyMover mover = enemyObj.GetComponent<EnemyMover>();
-        if (mover == null)
-            mover = enemyObj.AddComponent<EnemyMover>();
+        EnemyStateMachine stateMachine = enemyObj.GetComponent<EnemyStateMachine>();
+        if (stateMachine == null)
+            stateMachine = enemyObj.AddComponent<EnemyStateMachine>();
 
-        mover.Initialize(terrainGrid, path);
-        mover.OnTargetReached += () => HandleEnemyReachedTarget(enemyObj);
+        stateMachine.Initialize(terrainGrid, path);
+        stateMachine.OnTargetReached += () => HandleEnemyReachedTarget(enemyObj);
+       // stateMachine.OnDeath += () => HandleEnemyDeath(enemyObj);
     }
 
     private void HandleEnemyReachedTarget(GameObject enemyObj)
     {
-        // Hook up damage-to-target / scoring logic here before removing the enemy.
         Destroy(enemyObj);
     }
+
+    //private void HandleEnemyDeath(GameObject enemyObj)
+    //{
+    //    
+    //}
 }
