@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
+using UnityEngine.UIElements;
+using TMPro;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -13,11 +16,27 @@ public class EnemySpawner : MonoBehaviour
     public float spawnInterval = 1.5f;
     public int enemiesPerSpawner = 5;
 
-    private Dictionary<Vector2Int, List<Vector2Int>> pathsBySpawner;
+    [Header("Wave Settings")]
+    public int waveCount = 5;
+    public int enemiesPerWave = 5;
+    //public float spawnInterval = 1.5f;
+    public float delayBetweenWaves = 5f;
+    public float initialDelay = 2f;
 
-    /// <summary>
-    /// Call this after TerrainPathfinder.GeneratePathsToTarget() has run.
-    /// </summary>
+    [Header("Events")]
+    public Action<int> OnWaveStarted;      // wave number (1-based)
+    public Action<int> OnWaveCompleted;    // wave number (1-based)
+    public Action OnAllWavesCompleted;
+
+    private Dictionary<Vector2Int, List<Vector2Int>> pathsBySpawner;
+    private int currentWave = 0;
+    private int aliveEnemies = 0;
+
+    public int CurrentWave => currentWave;
+    public bool IsSpawning { get; private set; }
+
+    public TextMeshProUGUI waveCounterText;
+
     public void BeginSpawning()
     {
         pathsBySpawner = terrainPathfinder.PathsBySpawner;
@@ -28,21 +47,58 @@ public class EnemySpawner : MonoBehaviour
             return;
         }
 
-        foreach (KeyValuePair<Vector2Int, List<Vector2Int>> kvp in pathsBySpawner)
-        {
-            StartCoroutine(SpawnWave(kvp.Key, kvp.Value));
-        }
+        UpdateWaveCounter();
+        StartCoroutine(RunWaves());
+
+        
     }
 
-    private IEnumerator SpawnWave(Vector2Int spawnerCell, List<Vector2Int> path)
+    private IEnumerator RunWaves()
     {
-        for (int i = 0; i < enemiesPerSpawner; i++)
+       
+        IsSpawning = true;
+        yield return new WaitForSeconds(initialDelay);
+
+        
+
+        for (currentWave = 1; currentWave <= waveCount; currentWave++)
+        {
+            OnWaveStarted?.Invoke(currentWave);
+            UpdateWaveCounter();
+
+
+            // Spawn this wave across every spawner path in parallel, and wait for spawning to finish.
+            List<Coroutine> waveRoutines = new List<Coroutine>();
+            foreach (KeyValuePair<Vector2Int, List<Vector2Int>> kvp in pathsBySpawner)
+            {
+                waveRoutines.Add(StartCoroutine(SpawnWaveAtSpawner(kvp.Key, kvp.Value)));
+            }
+            foreach (Coroutine routine in waveRoutines)
+                yield return routine;
+
+            // Now wait for every enemy from this wave to actually die (or otherwise be removed).
+            yield return new WaitUntil(() => aliveEnemies <= 0);
+
+            OnWaveCompleted?.Invoke(currentWave);
+
+            if (currentWave < waveCount)
+                yield return new WaitForSeconds(delayBetweenWaves);
+            
+        }
+
+        IsSpawning = false;
+        OnAllWavesCompleted?.Invoke();
+    }
+
+    private IEnumerator SpawnWaveAtSpawner(Vector2Int spawnerCell, List<Vector2Int> path)
+    {
+        for (int i = 0; i < enemiesPerWave; i++)
         {
             SpawnEnemy(spawnerCell, path);
             yield return new WaitForSeconds(spawnInterval);
         }
     }
-
+    /*
     private void SpawnEnemy(Vector2Int spawnerCell, List<Vector2Int> path)
     {
         if (enemyPrefab == null || path == null || path.Count == 0)
@@ -58,17 +114,41 @@ public class EnemySpawner : MonoBehaviour
             stateMachine = enemyObj.AddComponent<EnemyStateMachine>();
 
         stateMachine.Initialize(terrainGrid, path);
-        stateMachine.OnTargetReached += () => HandleEnemyReachedTarget(enemyObj);
-       // stateMachine.OnDeath += () => HandleEnemyDeath(enemyObj);
+        //stateMachine.OnTargetReached += () => HandleEnemyReachedTarget(enemyObj);
+        stateMachine.OnDeath += () => HandleEnemyDeath(enemyObj);
     }
+    */
 
-    private void HandleEnemyReachedTarget(GameObject enemyObj)
+    private void SpawnEnemy(Vector2Int spawnerCell, List<Vector2Int> path)
     {
-        Destroy(enemyObj);
+        if (enemyPrefab == null || path == null || path.Count == 0)
+            return;
+
+        float y = terrainGrid.GetSurfaceHeight(spawnerCell.x, spawnerCell.y) + 1f;
+        Vector3 spawnPos = new Vector3(spawnerCell.x, y, spawnerCell.y);
+
+        GameObject enemyObj = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+        EnemyStateMachine stateMachine = enemyObj.GetComponent<EnemyStateMachine>();
+        if (stateMachine == null)
+            stateMachine = enemyObj.AddComponent<EnemyStateMachine>();
+
+        stateMachine.Initialize(terrainGrid, path);
+        aliveEnemies++;
+
+        //stateMachine.OnTargetReached += () => HandleEnemyReachedTarget(enemyObj);
+        stateMachine.OnDeath += () => HandleEnemyDeath(enemyObj);
     }
 
-    //private void HandleEnemyDeath(GameObject enemyObj)
-    //{
-    //    
-    //}
+
+    private void HandleEnemyDeath(GameObject enemyObj)
+    {
+        aliveEnemies--;
+        //Destroy(enemyObj);
+    }
+
+    private void UpdateWaveCounter()
+    {
+        waveCounterText.text = $"Wave: {CurrentWave} / {waveCount}";
+    }
+
 }

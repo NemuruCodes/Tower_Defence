@@ -401,7 +401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 100
-  resourceReward: 50
+  resourceReward: 20
   healthBar: {fileID: 8915056468424465225}
 --- !u!195 &2756329403376601547
 NavMeshAgent:
@@ -457,7 +457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482a741a13797b64fa51190cde664860, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMover
-  moveSpeed: 3
+  moveSpeed: 2.5
   arrivalThreshold: 0.1
   gravity: -20
   jumpSpeed: 8
