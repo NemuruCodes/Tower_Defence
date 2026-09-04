@@ -275,7 +275,7 @@ MonoBehaviour:
   smoothRotation: 1
   rotationSmoothTime: 0.15
   invertRotationDirection: 0
-  distance: 25
+  distance: 40
   minDistance: 20
   maxDistance: 50
   allowZoom: 1
@@ -287,8 +287,8 @@ MonoBehaviour:
   maxPitch: 80
   rotateLeftKey: 97
   rotateRightKey: 100
-  pitchUpKey: 113
-  pitchDownKey: 101
+  pitchUpKey: 119
+  pitchDownKey: 115
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
