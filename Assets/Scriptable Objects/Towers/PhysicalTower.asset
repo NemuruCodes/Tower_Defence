@@ -16,7 +16,7 @@ MonoBehaviour:
   towerPrefab: {fileID: 4890464631777073238, guid: 9cfc514911ca7774bb36c9f7b6912d5b, type: 3}
   maxHealth: 100
   damage: 15
-  range: 15
+  range: 10
   fireRate: 1
   buildCost: 50
   projectileBehavior: {fileID: 11400000, guid: 8734649281f10df4ea64bf1f62bb1139, type: 2}
