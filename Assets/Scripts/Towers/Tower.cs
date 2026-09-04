@@ -3,6 +3,8 @@ using UnityEngine;
 using System;
 
 //https://chandler-lane.medium.com/tower-defense-architecture-in-unity-dynamic-tower-targeting-cdcf79d404c9
+//https://learn.unity.com/tutorial/strategy-pattern
+//https://docs.unity3d.com/ScriptReference/Physics.OverlapSphere.html
 
 public class Tower : MonoBehaviour, IDamageable
 {

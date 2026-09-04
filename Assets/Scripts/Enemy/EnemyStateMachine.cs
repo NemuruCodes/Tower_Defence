@@ -23,10 +23,10 @@ public enum EnemyState
 public class EnemyStateMachine : MonoBehaviour
 {
     [Header("Tower Detection")]
-    [Tooltip("How far along the path the enemy will notice a tower.")]
+    [Tooltip("How far along the path the enemy will notice a tower")]
     public float towerDetectionRange = 6f;
     public LayerMask towerLayerMask;
-    [Tooltip("How often (seconds) to scan for towers while on the path.")]
+    [Tooltip("How often (seconds) to scan for towers while on the path")]
     public float detectionInterval = 0.25f;
 
     [Header("Tower Combat")]
@@ -130,7 +130,7 @@ public class EnemyStateMachine : MonoBehaviour
 
             if (TryFindTarget(out IDamageable target, out MonoBehaviour targetBehaviour))
             {
-                Debug.Log($"[{name}] Found target: {targetBehaviour.name} - switching to TowerMoving", this);
+                //Debug.Log($"[{name}] Found target: {targetBehaviour.name} switching to TowerMoving", this);
                 currentTarget = target;
                 currentTargetBehaviour = targetBehaviour;
                 mover.ResetSegment();
@@ -263,7 +263,7 @@ public class EnemyStateMachine : MonoBehaviour
 
         Collider[] hits = Physics.OverlapSphere(transform.position, towerDetectionRange, towerLayerMask);
 
-        Debug.Log($"[{name}] Detection scan: {hits.Length} collider(s) on layer mask {DescribeTowerLayerMask(towerLayerMask)} within {towerDetectionRange}m", this);
+        //Debug.Log($"[{name}] Detection scan: {hits.Length} collider on layer mask {DescribeTowerLayerMask(towerLayerMask)} in {towerDetectionRange}m", this);
 
         if (hits.Length == 0)
             return false;
@@ -276,8 +276,8 @@ public class EnemyStateMachine : MonoBehaviour
         {
             IDamageable damageable = hit.GetComponentInParent<IDamageable>();
             bool hasDamageable = damageable != null;
-            Debug.Log($"[{name}]   hit: {hit.name} (layer {LayerMask.LayerToName(hit.gameObject.layer)}) - has IDamageable: {hasDamageable}" +
-                      (hasDamageable ? $", CurrentHealth: {damageable.CurrentHealth}" : ""), hit);
+            //Debug.Log($"[{name}]   hit: {hit.name} (layer {LayerMask.LayerToName(hit.gameObject.layer)}) - has IDamageable: {hasDamageable}" +
+                      //(hasDamageable ? $", CurrentHealth: {damageable.CurrentHealth}" : ""), hit);
 
             if (!hasDamageable || damageable.CurrentHealth <= 0f)
                 continue;
@@ -301,7 +301,7 @@ public class EnemyStateMachine : MonoBehaviour
         targetBehaviour = closestBehaviour;
         return true;
     }
-
+    /*
     private static string DescribeTowerLayerMask(LayerMask mask)
     {
         if (mask.value == 0)
@@ -318,7 +318,7 @@ public class EnemyStateMachine : MonoBehaviour
         }
         return names.Count > 0 ? string.Join(", ", names) : $"raw value {mask.value}";
     }
-
+    */
     private bool TargetStillValid()
     {
         if (currentTargetBehaviour == null || currentTarget == null || currentTarget.CurrentHealth <= 0f)

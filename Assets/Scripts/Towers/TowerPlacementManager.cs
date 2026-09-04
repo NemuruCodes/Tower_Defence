@@ -1,6 +1,12 @@
 using System.Resources;
 using UnityEngine;
 
+//https://bronsonzgeb.com/index.php/2021/09/25/the-command-pattern-with-scriptable-objects/
+//https://docs.unity3d.com/ScriptReference/Physics.Raycast.html
+//https://docs.unity3d.com/ScriptReference/Bounds.Encapsulate.html
+//https://docs.unity3d.com/ScriptReference/Renderer-materials.html
+
+
 public class TowerPlacementManager : MonoBehaviour
 {
     [SerializeField] private LayerMask groundMask;

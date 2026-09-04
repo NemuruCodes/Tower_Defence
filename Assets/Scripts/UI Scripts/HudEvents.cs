@@ -138,7 +138,7 @@ public class HudEvents : MonoBehaviour
         if (!isPlacing) return;
         isPlacing = false;
         placingContainer.AddToClassList("NotPlacing");
-        //placingContainer.RemoveFromClassList("Placing");
+        
     }
 
     private void OnTowerSelected(TowerData towerData)
