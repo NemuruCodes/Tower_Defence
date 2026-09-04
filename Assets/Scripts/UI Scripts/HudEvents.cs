@@ -73,7 +73,7 @@ public class HudEvents : MonoBehaviour
             Button button = root.Q<Button>(binding.buttonName);
             if (button == null)
             {
-                Debug.LogWarning($"HudEvents: no button named '{binding.buttonName}' found in UXML.");
+                Debug.LogWarning($"HudEvents: no button named '{binding.buttonName}' found in UXML");
                 continue;
             }
 

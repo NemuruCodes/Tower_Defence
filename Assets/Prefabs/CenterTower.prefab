@@ -327,6 +327,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   healthBar: {fileID: 3033066022053935155}
+  isCenterTower: 1
 --- !u!120 &5947898582300640873
 LineRenderer:
   serializedVersion: 3
