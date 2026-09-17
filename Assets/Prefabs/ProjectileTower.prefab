@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 748910303681718412}
   - component: {fileID: 4206410527677189354}
   - component: {fileID: 2292799347794899884}
+  - component: {fileID: 6898873274484965206}
   m_Layer: 6
   m_Name: ProjectileTower
   m_TagString: Untagged
@@ -294,6 +295,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   healthBar: {fileID: 7199329820136778324}
+  isCenterTower: 0
+  damageFlash: {fileID: 6898873274484965206}
 --- !u!114 &2292799347794899884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,6 +315,22 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &6898873274484965206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4890464631777073238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63939249dd15bfa4785faf5d2ff68b37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageFlash
+  renderersToFlash:
+  - {fileID: 8072686199383496630}
+  flashColor: {r: 1, g: 1, b: 1, a: 1}
+  flashDuration: 0.15
 --- !u!1 &5552748134775094100
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,7 +350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2999409849689708514
 RectTransform:
   m_ObjectHideFlags: 0
@@ -685,3 +704,8 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2534964839176971238, guid: c9faf9575bc71f54ba1836626156262e, type: 3}
+--- !u!23 &8072686199383496630 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: c9faf9575bc71f54ba1836626156262e, type: 3}
+  m_PrefabInstance: {fileID: 7477775221904182066}
+  m_PrefabAsset: {fileID: 0}

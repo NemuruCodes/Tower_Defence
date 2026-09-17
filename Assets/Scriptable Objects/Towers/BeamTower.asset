@@ -18,6 +18,6 @@ MonoBehaviour:
   damage: 3
   range: 10
   fireRate: 15
-  buildCost: 80
+  buildCost: 70
   projectileBehavior: {fileID: 11400000, guid: b72e240dd58196647a4537780c8fed12, type: 2}
   targetingStrategy: {fileID: 11400000, guid: 3c6e8f70f55e33649867b7d3425080fc, type: 2}

@@ -13,6 +13,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     [SerializeField] private HealthBar healthBar;
 
+    [SerializeField] private DamageFlash damageFlash;
+
     private void Awake() => currentHealth = maxHealth;
 
     public void TakeDamage(float amount)
@@ -26,6 +28,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
             Die();
         }
         Debug.Log(currentHealth);
+
+        if (damageFlash != null) damageFlash.Flash();
 
         healthBar.SetHealth(currentHealth, maxHealth);
     }

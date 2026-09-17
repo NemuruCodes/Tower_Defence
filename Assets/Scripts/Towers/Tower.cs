@@ -1,6 +1,7 @@
 using System.Linq;
 using UnityEngine;
 using System;
+using System.Collections;
 
 //https://chandler-lane.medium.com/tower-defense-architecture-in-unity-dynamic-tower-targeting-cdcf79d404c9
 //https://learn.unity.com/tutorial/strategy-pattern
@@ -31,6 +32,8 @@ public class Tower : MonoBehaviour, IDamageable
 
     public bool isCenterTower;
 
+    [SerializeField] private DamageFlash damageFlash;
+    
     private void Awake()
     {
         currentHealth = data.maxHealth;
@@ -39,6 +42,8 @@ public class Tower : MonoBehaviour, IDamageable
 
         rangeIndicator.SetRadius(data.range);
         healthBar.SetHealth(currentHealth, data.maxHealth);
+
+        
     }
 
     private void Update()
@@ -56,6 +61,8 @@ public class Tower : MonoBehaviour, IDamageable
         fireCooldown = 1f / data.fireRate;
     }
 
+
+
     private void Attack(Transform target)
     {
         attackEffect.Fire(firePoint, target, data.damage);
@@ -66,13 +73,22 @@ public class Tower : MonoBehaviour, IDamageable
         currentHealth -= amount;
         healthBar.SetHealth(currentHealth, data.maxHealth);
 
-        if (currentHealth <= 0f) Die();
+        if (currentHealth <= 0f)
+        {
+            Die();
+            return;
+        }
+
+        if (damageFlash != null) damageFlash.Flash();
     }
+
+   
 
     private void Die()
     {
         OnDeath?.Invoke();
 
+       
 
         Destroy(gameObject);
     }

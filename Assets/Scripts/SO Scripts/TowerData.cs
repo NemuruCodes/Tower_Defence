@@ -19,6 +19,4 @@ public class TowerData : ScriptableObject
     public ProjectileBehaviour projectileBehavior;
     public TargetingStratedgy targetingStrategy;
 
-    
-    
 }

@@ -3310,9 +3310,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HudEvents
   towerButtons:
-  - buttonName: SingleTarget
+  - buttonName: FireballTower
     towerData: {fileID: 11400000, guid: cd146f28ebc5f3143819f5c7d0d6961c, type: 2}
-  - buttonName: SplashTarget
+  - buttonName: BeamTower
     towerData: {fileID: 11400000, guid: b83c3def7c6b9f2419b10aa9aa71c7be, type: 2}
   placementManager: {fileID: 1610309908}
 --- !u!114 &2034830193

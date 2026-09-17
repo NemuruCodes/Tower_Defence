@@ -285,6 +285,7 @@ GameObject:
   - component: {fileID: 2756329403376601547}
   - component: {fileID: 282101200934510063}
   - component: {fileID: 1557073966548644268}
+  - component: {fileID: 5991696925599020105}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -403,6 +404,7 @@ MonoBehaviour:
   maxHealth: 100
   resourceReward: 20
   healthBar: {fileID: 8915056468424465225}
+  damageFlash: {fileID: 5991696925599020105}
 --- !u!195 &2756329403376601547
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -464,3 +466,19 @@ MonoBehaviour:
   groundedSnapThreshold: 0.05
   jumpStepThreshold: 0.6
   jumpTriggerDistance: 0.4
+--- !u!114 &5991696925599020105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8842268095118744254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63939249dd15bfa4785faf5d2ff68b37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageFlash
+  renderersToFlash:
+  - {fileID: 2189812529118512486}
+  flashColor: {r: 0.8415094, g: 0.21434665, b: 0.21434665, a: 1}
+  flashDuration: 0.15

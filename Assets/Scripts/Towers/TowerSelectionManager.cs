@@ -8,6 +8,8 @@ public class TowerSelectionManager : MonoBehaviour
     [SerializeField] private TowerPlacementManager placementManager;
 
 
+
+
     private Tower selectedTower;
     private Outline hoveredOutline;
 
@@ -45,6 +47,8 @@ public class TowerSelectionManager : MonoBehaviour
         hoveredOutline = outline;
         if (hoveredOutline != null) hoveredOutline.enabled = true;
 
+        
+
     }
 
     private void ClearHover()
@@ -59,14 +63,41 @@ public class TowerSelectionManager : MonoBehaviour
 
     private void SelectTower(Tower tower)
     {
-        selectedTower?.Deselect();
+        if (selectedTower != null)
+        {
+            HealthBar oldHealth = selectedTower.GetComponentInChildren<HealthBar>(true);
+            if (oldHealth != null) oldHealth.gameObject.SetActive(false);
+            selectedTower?.Deselect();
+        }
+
         selectedTower = tower;
         selectedTower.Select();
+
+        HealthBar newHealth = selectedTower.GetComponentInChildren<HealthBar>(true);
+        if (newHealth != null) 
+        { 
+            newHealth.gameObject.SetActive(true);
+            
+        }
+
     }
 
     private void DeselectCurrent()
     {
-        selectedTower?.Deselect();
-        selectedTower = null;
+        if (selectedTower == null) return;
+
+        if (selectedTower.CompareTag("MainTower"))
+        {
+            selectedTower?.Deselect();
+            selectedTower = null;
+        }
+        else
+        {
+            HealthBar health = selectedTower.GetComponentInChildren<HealthBar>(true);
+            if (health != null) health.gameObject.SetActive(false);
+
+            selectedTower?.Deselect();
+            selectedTower = null;
+        }
     }
 }
