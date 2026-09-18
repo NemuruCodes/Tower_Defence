@@ -1905,6 +1905,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6648019512408470286, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1506049453}
+    - targetCorrespondingSourceObject: {fileID: 6648019512408470286, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1506049456}
   m_SourcePrefab: {fileID: 100100000, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
 --- !u!1 &1323195772
 GameObject:
@@ -2369,16 +2372,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   terrainGrid: {fileID: 1506049451}
-  terrainPathfinder: {fileID: 1506049448}
-  enemyPrefab: {fileID: 8842268095118744254, guid: 2a7b1e6159031924181bda54db240dc0, type: 3}
-  uiManager: {fileID: 2057295987}
-  spawnInterval: 3
-  enemiesPerSpawner: 5
-  waveCount: 5
-  enemiesPerWave: 5
-  delayBetweenWaves: 5
-  initialDelay: 2
-  waveCounterText: {fileID: 891558776}
 --- !u!114 &1506049455 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4353653600987978130, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
@@ -2390,6 +2383,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eec6738469bbc9a4eba2c39da499ee7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TerrainGenerator
+--- !u!114 &1506049456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506049447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0059dee70f72904f8c4531ef7fc88db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveManager
+  terrainPathfinder: {fileID: 1506049448}
+  enemySpawner: {fileID: 1506049453}
+  uiManager: {fileID: 2057295987}
+  waveCounterText: {fileID: 891558776}
+  waves:
+  - {fileID: 11400000, guid: 893e942dde9420f4db8635d1b5225693, type: 2}
+  - {fileID: 11400000, guid: a2fc888c56b36a04289a38bb81595705, type: 2}
+  - {fileID: 11400000, guid: 2974f9894e243c1418a47343b28b7283, type: 2}
+  - {fileID: 11400000, guid: 787c836abc486d846b15546757e258d3, type: 2}
+  - {fileID: 11400000, guid: 89d73fb3bc9e0684eba0c60b4f94f73e, type: 2}
+  delayBetweenWaves: 5
+  initialDelay: 0.5
 --- !u!1001 &1590849723
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3314,6 +3331,8 @@ MonoBehaviour:
     towerData: {fileID: 11400000, guid: cd146f28ebc5f3143819f5c7d0d6961c, type: 2}
   - buttonName: BeamTower
     towerData: {fileID: 11400000, guid: b83c3def7c6b9f2419b10aa9aa71c7be, type: 2}
+  - buttonName: SplashTower
+    towerData: {fileID: 11400000, guid: 990102b4d30f6454c8889a23c3ca37f1, type: 2}
   placementManager: {fileID: 1610309908}
 --- !u!114 &2034830193
 MonoBehaviour:

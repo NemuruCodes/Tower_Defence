@@ -7,6 +7,48 @@ using TMPro;
 
 public class EnemySpawner : MonoBehaviour
 {
+
+    [Header("References")]
+    public TerrainGrid terrainGrid;
+
+    public int AliveCount { get; private set; }
+
+    public Action<GameObject> OnEnemySpawned;
+    public Action<GameObject> OnEnemyDied;
+
+    public void SpawnEnemy(EnemyData enemyData, Vector2Int spawnerCell, List<Vector2Int> path)
+    {
+        if (enemyData == null || enemyData.prefab == null || path == null || path.Count == 0)
+        {
+            Debug.LogWarning("EnemySpawner: invalid enemyData or path, skipping spawn.");
+            return;
+        }
+
+        float y = terrainGrid.GetSurfaceHeight(spawnerCell.x, spawnerCell.y) + 1f;
+        Vector3 spawnPos = new Vector3(spawnerCell.x, y, spawnerCell.y);
+
+        GameObject enemyObj = Instantiate(enemyData.prefab, spawnPos, Quaternion.identity);
+
+        EnemyStateMachine stateMachine = enemyObj.GetComponent<EnemyStateMachine>();
+        if (stateMachine == null)
+            stateMachine = enemyObj.AddComponent<EnemyStateMachine>();
+
+        // EnemyStateMachine fans enemyData out to EnemyMover and EnemyHealth
+        // internally, so this is the only place spawn-time stats get set.
+        stateMachine.Initialize(terrainGrid, path, enemyData);
+
+        AliveCount++;
+        OnEnemySpawned?.Invoke(enemyObj);
+
+        stateMachine.OnDeath += () => HandleEnemyDeath(enemyObj);
+    }
+
+    private void HandleEnemyDeath(GameObject enemyObj)
+    {
+        AliveCount--;
+        OnEnemyDied?.Invoke(enemyObj);
+    }
+    /*
     [Header("References")]
     public TerrainGrid terrainGrid;
     public TerrainPathfinder terrainPathfinder;
@@ -123,7 +165,7 @@ public class EnemySpawner : MonoBehaviour
     }
     */
 
-    private void SpawnEnemy(Vector2Int spawnerCell, List<Vector2Int> path)
+    /*private void SpawnEnemy(Vector2Int spawnerCell, List<Vector2Int> path)
     {
         if (enemyPrefab == null || path == null || path.Count == 0)
             return;
@@ -154,5 +196,6 @@ public class EnemySpawner : MonoBehaviour
     {
         waveCounterText.text = $"Wave: {CurrentWave} / {waveCount}";
     }
+    */
 
 }

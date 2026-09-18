@@ -69,10 +69,19 @@ public class EnemyStateMachine : MonoBehaviour
         health.OnDeath -= HandleDeath;
     }
 
-    public void Initialize(TerrainGrid terrainGrid, List<Vector2Int> path)
+    public void Initialize(TerrainGrid terrainGrid, List<Vector2Int> path, EnemyData data = null)
     {
         grid = terrainGrid;
-        mover.Initialize(terrainGrid);
+        mover.Initialize(terrainGrid, data);
+        health.Init(data);
+
+        if (data != null)
+        {
+            towerDetectionRange = data.towerDetectionRange;
+            attackRange = data.attackRange;
+            attackDamage = data.attackDamage;
+            attackInterval = data.attackInterval;
+        }
 
         pathWaypoints = BuildWaypoints(path);
         waypointIndex = 0;

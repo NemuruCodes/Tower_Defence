@@ -59,9 +59,9 @@ public class TerrainGenerator : MonoBehaviour
             renderer.RenderTerrain(); 
         }
 
-        EnemySpawner spawner = GetComponent<EnemySpawner>();
-        if (spawner != null)
-            spawner.BeginSpawning();
+        WaveManager waveManager = GetComponent<WaveManager>();
+        if (waveManager != null)
+            waveManager.BeginSpawning();
 
         OnTowerSpawnPointReady?.Invoke(GetTowerSpawnPosition());
     }

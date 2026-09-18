@@ -3,6 +3,7 @@ using System;
 
 public class EnemyHealth : MonoBehaviour, IDamageable
 {
+
     [SerializeField] private float maxHealth = 50f;
     private float currentHealth;
     public float CurrentHealth => currentHealth;
@@ -15,7 +16,17 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     [SerializeField] private DamageFlash damageFlash;
 
-    private void Awake() => currentHealth = maxHealth;
+    private void Awake() => currentHealth = CurrentHealth;
+
+    public void Init(EnemyData data)
+    {
+        if (data == null)
+            return;
+
+        maxHealth = data.maxHealth;
+        resourceReward = data.resourceReward;
+        currentHealth = maxHealth;
+    }
 
     public void TakeDamage(float amount)
     {
@@ -31,7 +42,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
         if (damageFlash != null) damageFlash.Flash();
 
-        healthBar.SetHealth(currentHealth, maxHealth);
+        if(healthBar != null) healthBar.SetHealth(currentHealth, maxHealth);
     }
 
     private void Die()

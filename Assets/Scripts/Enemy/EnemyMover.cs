@@ -25,12 +25,15 @@ public class EnemyMover : MonoBehaviour
     private float verticalVelocity;
     private bool hasJumpedThisSegment;
 
-    public void Initialize(TerrainGrid terrainGrid)
+    public void Initialize(TerrainGrid terrainGrid, EnemyData data)
     {
         grid = terrainGrid;
         verticalVelocity = 0f;
         IsGrounded = true;
         hasJumpedThisSegment = false;
+
+        if (data != null)
+            moveSpeed = data.moveSpeed;
     }
 
     public void Warp(Vector3 worldPosition)
