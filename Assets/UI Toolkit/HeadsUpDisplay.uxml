@@ -40,7 +40,7 @@
                         <ui:Label text="Label" name="RangeLabel" data-source="project://database/Assets/Scriptable%20Objects/Towers/SingleTargetTower.asset?fileID=11400000&amp;guid=7f0667db7d0757b4bbb1b9961dd07f2e&amp;type=2#SingleTargetTower" class="buttonLabel" style="flex-wrap: wrap; flex-direction: row; align-items: flex-start; align-self: center; height: 50px; width: 100px; padding-left: 5px;"/>
                     </ui:VisualElement>
                 </ui:Button>
-                <ui:Button text="Splash Tower" name="SplashTower" class="button tower-button" style="margin-right: 150px; flex-direction: row;">
+                <ui:Button text="Block Tower" name="BlockTower" class="button tower-button" style="margin-right: 150px; flex-direction: row;">
                     <ui:VisualElement style="flex-grow: 1; align-self: center; align-items: center; translate: 160px 0;">
                         <ui:Label text="Cost:" name="Cost" data-source="project://database/Assets/Scriptable%20Objects/Towers/SingleTargetTower.asset?fileID=11400000&amp;guid=7f0667db7d0757b4bbb1b9961dd07f2e&amp;type=2#SingleTargetTower" class="buttonLabel" style="flex-wrap: wrap; flex-direction: row; align-items: flex-start; align-self: center; height: 50px; width: 100px; padding-top: 0; padding-left: 5px; -unity-text-align: middle-left;"/>
                         <ui:Label text="DMG:" name="Damage" data-source="project://database/Assets/Scriptable%20Objects/Towers/SingleTargetTower.asset?fileID=11400000&amp;guid=7f0667db7d0757b4bbb1b9961dd07f2e&amp;type=2#SingleTargetTower" class="buttonLabel" style="flex-wrap: wrap; flex-direction: row; align-items: flex-start; align-self: center; height: 50px; width: 100px; padding-left: 5px;"/>
