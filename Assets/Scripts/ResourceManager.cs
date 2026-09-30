@@ -76,7 +76,10 @@ public class ResourceManager : MonoBehaviour
         if(resourceLabel != null)
         {
             resourceLabel.text = $"Magik: {CurrentResources}";
+
         }
+
+        
     }
 
     public bool CanAfford(int amount)
@@ -93,6 +96,8 @@ public class ResourceManager : MonoBehaviour
         OnResourcesChanged?.Invoke(CurrentResources);
         UpdateResourceDisplay();
 
+        resourceLabel.RemoveFromClassList("Scaled");
+
         return true;
     }
 
@@ -103,7 +108,12 @@ public class ResourceManager : MonoBehaviour
         CurrentResources += amount;
 
         OnResourcesChanged?.Invoke(CurrentResources);
+        resourceLabel.AddToClassList("Scaled");
+        
         UpdateResourceDisplay();
+
+        
+
     }
 
     

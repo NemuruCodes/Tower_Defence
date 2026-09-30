@@ -21,3 +21,5 @@ MonoBehaviour:
     count: 15
     spawnInterval: 2
   delayBeforeWave: 5
+  countScalePerTower: 0.1
+  maxBonusEnemiesPerEntry: 45

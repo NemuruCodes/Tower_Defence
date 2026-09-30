@@ -88,9 +88,37 @@
     margin-right: 4px;
 }
 
-
-
 .button:hover {
     scale: 1.1 1.1 1.1;
     transition-duration: 0.35s;
+}
+
+.Unscaled {
+    align-self: flex-start;
+    margin-left: 20px;
+    translate: 0 -60px;
+    position: absolute;
+    top: -11px;
+    left: 9px;
+    font-size: 50px;
+    -unity-font-style: bold;
+    text-shadow: 10px 10px 0 rgba(0, 0, 0, 0.502);
+}
+
+.Scaled {
+    scale: 1.05 1.05 1.05;
+    border-top-width: 8px;
+    border-right-width: 8px;
+    border-bottom-width: 8px;
+    border-left-width: 8px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-left-color: rgb(26, 161, 220);
+    border-right-color: rgb(26, 161, 220);
+    border-top-color: rgb(26, 161, 220);
+    border-bottom-color: rgb(26, 161, 220);
+    color: rgb(49, 109, 116);
+    text-shadow: 10px 10px 0 rgba(23, 226, 205, 0.502);
 }

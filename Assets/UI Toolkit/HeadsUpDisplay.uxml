@@ -12,7 +12,7 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="TowerMenu" class="TowerMenuOpen TowerMenuClosed" style="transition-duration: 1s; transition-timing-function: ease; transition-property: all;">
-            <ui:Label text="Resource:" name="ResourceLabel" class="header" style="align-self: flex-start; margin-left: 20px; translate: 0 -60px; position: absolute; top: -11px; left: 9px;"/>
+            <ui:Label text="Resource:" name="ResourceLabel" class="Unscaled" style="transition-duration: 0.35s; top: -30px;"/>
             <ui:Button text="^" name="ToggleButton" style="-unity-text-align: middle-center; align-items: auto; flex-direction: column; top: auto; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; padding-right: 30px; padding-left: 30px; -unity-font-style: bold; font-size: 25px; height: 35px; align-self: center; flex-wrap: nowrap; justify-content: flex-end; translate: 0 -40px;"/>
             <ui:Label text="Tower Menu" class="header" style="align-self: center; justify-content: flex-start; align-items: center; -unity-text-align: middle-center; flex-wrap: nowrap; margin-top: 0; margin-bottom: 0; translate: 0 -20px;"/>
             <ui:VisualElement name="ButtonContainer" style="flex-grow: 1; flex-direction: row; align-self: center; align-items: auto; justify-content: flex-start; margin-bottom: 60px;">
