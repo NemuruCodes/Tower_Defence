@@ -35,6 +35,15 @@ public class WaveManager : MonoBehaviour
     public int WaveCount => waves.Count;
     public bool IsSpawning { get; private set; }
 
+    private struct ScaledEntry
+    {
+        public EnemyData enemyType;
+        public int count;
+        public float spawnInterval;
+    }
+
+    
+
     public void BeginSpawning()
     {
         pathsBySpawner = terrainPathfinder.PathsBySpawner;
@@ -66,13 +75,16 @@ public class WaveManager : MonoBehaviour
 
             yield return new WaitForSeconds(wave.delayBeforeWave);
 
+            int towerCount = Tower.PlacedTowerCount; // or your registry's count
+            List<ScaledEntry> scaledEntries = BuildScaledEntries(wave, towerCount);
+
             OnWaveStarted?.Invoke(currentWave);
             UpdateWaveCounter();
 
             List<Coroutine> spawnRoutines = new List<Coroutine>();
-            foreach (WaveSpawnEntry entry in wave.spawnEntries)
+            foreach (ScaledEntry entry in scaledEntries)
             {
-                spawnRoutines.Add(StartCoroutine(SpawnEntryAcrossPaths(entry)));
+                spawnRoutines.Add(StartCoroutine(SpawnScaledEntryAcrossPaths(entry)));
             }
             foreach (Coroutine routine in spawnRoutines)
                 yield return routine;
@@ -91,8 +103,26 @@ public class WaveManager : MonoBehaviour
         OnAllWavesCompleted?.Invoke();
     }
 
-    // Round-robins one entry's enemies across all available spawner paths
-    // so a single wave's enemy type isn't dumped down just one path.
+    private List<ScaledEntry> BuildScaledEntries(WaveData wave, int towerCount)
+    {
+        List<ScaledEntry> result = new List<ScaledEntry>(wave.spawnEntries.Count);
+        foreach (WaveSpawnEntry entry in wave.spawnEntries)
+        {
+            int bonus = Mathf.Min(
+                Mathf.RoundToInt(entry.count * wave.countScalePerTower * towerCount),
+                wave.maxBonusEnemiesPerEntry);
+
+            result.Add(new ScaledEntry
+            {
+                enemyType = entry.enemyType,
+                count = entry.count + bonus,
+                spawnInterval = entry.spawnInterval
+            });
+        }
+        return result;
+    }
+
+    /*
     private IEnumerator SpawnEntryAcrossPaths(WaveSpawnEntry entry)
     {
         List<Vector2Int> spawnerCells = new List<Vector2Int>(pathsBySpawner.Keys);
@@ -109,6 +139,25 @@ public class WaveManager : MonoBehaviour
             yield return new WaitForSeconds(entry.spawnInterval);
         }
     }
+    */
+
+    private IEnumerator SpawnScaledEntryAcrossPaths(ScaledEntry entry)
+    {
+        List<Vector2Int> spawnerCells = new List<Vector2Int>(pathsBySpawner.Keys);
+        int pathIndex = 0;
+
+        for (int i = 0; i < entry.count; i++)
+        {
+            Vector2Int spawnerCell = spawnerCells[pathIndex];
+            List<Vector2Int> path = pathsBySpawner[spawnerCell];
+
+            enemySpawner.SpawnEnemy(entry.enemyType, spawnerCell, path);
+
+            pathIndex = (pathIndex + 1) % spawnerCells.Count;
+            yield return new WaitForSeconds(entry.spawnInterval);
+        }
+    }
+
 
     private void UpdateWaveCounter()
     {

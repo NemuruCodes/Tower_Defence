@@ -1,7 +1,8 @@
-using System.Linq;
-using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 //https://chandler-lane.medium.com/tower-defense-architecture-in-unity-dynamic-tower-targeting-cdcf79d404c9
 //https://learn.unity.com/tutorial/strategy-pattern
@@ -33,7 +34,9 @@ public class Tower : MonoBehaviour, IDamageable
     public bool isCenterTower;
 
     [SerializeField] private DamageFlash damageFlash;
-    
+
+    private static readonly List<Tower> activeTowers = new List<Tower>();
+
     private void Awake()
     {
         currentHealth = data.maxHealth;
@@ -44,6 +47,28 @@ public class Tower : MonoBehaviour, IDamageable
         healthBar.SetHealth(currentHealth, data.maxHealth);
 
         
+    }
+
+    public static int PlacedTowerCount
+    {
+        get
+        {
+            int count = 0;
+            foreach (Tower t in activeTowers)
+                if (!t.CompareTag("MainTower"))
+                    count++;
+            return count;
+        }
+    }
+
+    private void OnEnable()
+    {
+        activeTowers.Add(this);
+    }
+
+    private void OnDisable()
+    {
+        activeTowers.Remove(this);
     }
 
     private void Update()

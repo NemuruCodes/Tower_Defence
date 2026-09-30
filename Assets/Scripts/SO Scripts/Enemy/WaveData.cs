@@ -21,4 +21,11 @@ public class WaveData : ScriptableObject
     [Header("Timing")]
     [Tooltip("Delay after the previous wave fully clears before this wave starts spawning.")]
     public float delayBeforeWave = 5f;
+
+    [Header("Tower Scaling")]
+    [Tooltip("Extra enemies added per placed tower, as a fraction of this wave's base count. 0 = no scaling.")]
+    public float countScalePerTower = 0f;
+
+    [Tooltip("Optional cap so scaling doesn't run away late-game.")]
+    public int maxBonusEnemiesPerEntry = 10;
 }
