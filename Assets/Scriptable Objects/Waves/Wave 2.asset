@@ -17,6 +17,9 @@ MonoBehaviour:
   - enemyType: {fileID: 11400000, guid: e9469c70ab962d1499175e0c89c6b9f7, type: 2}
     count: 15
     spawnInterval: 0.5
+  - enemyType: {fileID: 11400000, guid: 48c37798660785748976e2cc27d65c2b, type: 2}
+    count: 2
+    spawnInterval: 1
   delayBeforeWave: 5
   countScalePerTower: 0.2
   maxBonusEnemiesPerEntry: 20
