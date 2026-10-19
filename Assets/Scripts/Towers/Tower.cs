@@ -8,6 +8,8 @@ using UnityEngine;
 //https://learn.unity.com/tutorial/strategy-pattern
 //https://docs.unity3d.com/ScriptReference/Physics.OverlapSphere.html
 
+[RequireComponent(typeof(TowerStats))]      
+[RequireComponent(typeof(TowerUpgrader))]   
 public class Tower : MonoBehaviour, IDamageable
 {
 
@@ -24,6 +26,9 @@ public class Tower : MonoBehaviour, IDamageable
 
     private IDamageable currentTarget;
 
+    private TowerStats stats;
+    private TowerUpgrader upgrader;
+
     public float CurrentHealth => currentHealth;
     public bool IsAlive => currentHealth > 0f;
 
@@ -37,16 +42,55 @@ public class Tower : MonoBehaviour, IDamageable
 
     private static readonly List<Tower> activeTowers = new List<Tower>();
 
+    private float CurrentRange => stats != null ? stats.Range : data.range;
+    /*
+    private void Start()
+    {
+        healthBar = GetComponent<HealthBar>();
+        if (isCenterTower) 
+        {
+            healthBar.enabled = true;
+        }
+        else
+        {
+            healthBar.enabled = false;
+        }
+           
+    }
+    */
     private void Awake()
     {
-        currentHealth = data.maxHealth;
+        stats = GetComponent<TowerStats>();
+        upgrader = GetComponent<TowerUpgrader>();
+        stats.Init(data);
+        upgrader.Init(data);
+        stats.OnStatChanged += HandleStatChanged;
+
+        currentHealth = stats.MaxHealth;
         targeting = data.targetingStrategy;   // SO implements the interface
         attackEffect = data.projectileBehavior;
 
-        rangeIndicator.SetRadius(data.range);
-        healthBar.SetHealth(currentHealth, data.maxHealth);
+        rangeIndicator.SetRadius(stats.Range);
+        healthBar.SetHealth(currentHealth, stats.MaxHealth);
 
         
+    }
+
+    private void HandleStatChanged(TowerStat stat, float oldValue, float newValue)
+    {
+        switch (stat)
+        {
+            case TowerStat.Range:
+                rangeIndicator.SetRadius(newValue);
+                break;
+
+            case TowerStat.MaxHealth:
+                currentHealth += newValue - oldValue;    // reward the upgrade
+                healthBar.SetHealth(currentHealth, newValue);
+                break;
+
+                // Damage and FireRate need no handling, they're read at use time
+        }
     }
 
     public static int PlacedTowerCount
@@ -83,20 +127,20 @@ public class Tower : MonoBehaviour, IDamageable
         if (target == null) return;
 
         Attack(target);
-        fireCooldown = 1f / data.fireRate;
+        fireCooldown = 1f / stats.FireRate;
     }
 
 
 
     private void Attack(Transform target)
     {
-        attackEffect.Fire(firePoint, target, data.damage);
+        attackEffect.Fire(firePoint, target, stats.Damage);
     }
 
     public void TakeDamage(float amount)
     {
         currentHealth -= amount;
-        healthBar.SetHealth(currentHealth, data.maxHealth);
+        healthBar.SetHealth(currentHealth, stats.MaxHealth);
 
         if (currentHealth <= 0f)
         {

@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
@@ -11,12 +13,16 @@ public class HealthBar : MonoBehaviour
     private void Awake()
     {
         cam = Camera.main;
+
+        var canvas = GetComponentInParent<Canvas>();
+        if (canvas != null && canvas.worldCamera == null)
+            canvas.worldCamera = cam;
     }
 
     private void LateUpdate()
     {
         if (billboardToCamera && cam != null)
-            transform.forward = cam.transform.forward;
+            transform.rotation = cam.transform.rotation;
     }
 
     public void SetHealth(float current, float max)

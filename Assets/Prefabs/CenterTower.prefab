@@ -283,6 +283,10 @@ GameObject:
   - component: {fileID: 6782194625317651840}
   - component: {fileID: 8425802359206400352}
   - component: {fileID: 631367628805609118}
+  - component: {fileID: 6822634352982768379}
+  - component: {fileID: 5872702056887425939}
+  - component: {fileID: 928924257730927505}
+  - component: {fileID: 1659747473514683876}
   m_Layer: 6
   m_Name: CenterTower
   m_TagString: MainTower
@@ -488,6 +492,57 @@ MonoBehaviour:
   - {fileID: 4445732892533986626}
   flashColor: {r: 1, g: 1, b: 1, a: 1}
   flashDuration: 0.15
+--- !u!114 &6822634352982768379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6196530488297049178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4898d6bf4209ea419dbb8d896e0e4fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerStats
+--- !u!114 &5872702056887425939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6196530488297049178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c357be7ec77e1b4abb39c8e9f4ca326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerUpgrader
+  stats: {fileID: 6822634352982768379}
+  visuals: {fileID: 1659747473514683876}
+--- !u!114 &928924257730927505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6196530488297049178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4898d6bf4209ea419dbb8d896e0e4fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerStats
+--- !u!114 &1659747473514683876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6196530488297049178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceff1679ab388034e9d57997ee090b9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerVisuals
+  visuals: []
 --- !u!1 &8628808756772863716
 GameObject:
   m_ObjectHideFlags: 0

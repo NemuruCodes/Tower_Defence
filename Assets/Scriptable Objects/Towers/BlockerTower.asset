@@ -21,3 +21,5 @@ MonoBehaviour:
   buildCost: 50
   projectileBehavior: {fileID: 0}
   targetingStrategy: {fileID: 11400000, guid: 3c6e8f70f55e33649867b7d3425080fc, type: 2}
+  upgradePaths:
+  - {fileID: 11400000, guid: d8c8f527abbe05a44b82d2f450046e43, type: 2}

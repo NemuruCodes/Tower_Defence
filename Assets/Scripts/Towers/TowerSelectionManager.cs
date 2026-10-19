@@ -30,9 +30,15 @@ public class TowerSelectionManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+           
+
             if (hoveredTower != null)
                 SelectTower(hoveredTower);
-            else
+               
+        }
+        else if (Input.GetMouseButtonDown(1))
+        {
+            if (selectedTower != null)
                 DeselectCurrent();
         }
     }

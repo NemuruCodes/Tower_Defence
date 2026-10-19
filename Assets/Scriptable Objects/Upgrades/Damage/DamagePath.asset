@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aacc114f02ed1ed458d48007c04220f3, type: 3}
+  m_Name: DamagePath
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradePathSO
+  displayName: Dmg Up
+  icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  tiers:
+  - {fileID: 11400000, guid: af81342dfeb51284eb7b816eaea319a5, type: 2}
+  - {fileID: 11400000, guid: e2f31520630569b4aaeba199c0a32693, type: 2}
+  - {fileID: 11400000, guid: dd349b96ea0bc0d4bbe24f7e27aaabac, type: 2}

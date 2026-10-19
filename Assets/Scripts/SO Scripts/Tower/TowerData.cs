@@ -19,4 +19,6 @@ public class TowerData : ScriptableObject
     public ProjectileBehaviour projectileBehavior;
     public TargetingStratedgy targetingStrategy;
 
+    [Header("Upgrades")]
+    public UpgradePathSO[] upgradePaths;
 }
