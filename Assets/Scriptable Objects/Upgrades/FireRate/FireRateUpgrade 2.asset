@@ -16,8 +16,11 @@ MonoBehaviour:
   description: 
   icon: {fileID: 0}
   cost: 150
-  difficultyWeight: 1
+  difficultyWeight: 0.5
   modifiers:
   - stat: 3
     mode: 1
     value: 0.25
+  - stat: 4
+    mode: 1
+    value: 0.2

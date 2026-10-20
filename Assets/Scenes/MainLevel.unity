@@ -266,7 +266,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3614059702278831016, guid: 09ea518a9179eed4682e6aeabfc737b0, type: 3}
       propertyPath: visuals.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3614059702278831016, guid: 09ea518a9179eed4682e6aeabfc737b0, type: 3}
       propertyPath: visuals.Array.data[0].path
@@ -1510,10 +1510,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProjectileTower
       objectReference: {fileID: 0}
-    - target: {fileID: 6349965789007130280, guid: 9cfc514911ca7774bb36c9f7b6912d5b, type: 3}
-      propertyPath: path
-      value: 
-      objectReference: {fileID: 11400000, guid: 608f9bdfd777e51408376137581cc92a, type: 2}
     - target: {fileID: 7913376654129060165, guid: 9cfc514911ca7774bb36c9f7b6912d5b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -200.12236

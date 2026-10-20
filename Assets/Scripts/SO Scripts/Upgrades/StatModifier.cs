@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum TowerStat { Damage, Range, MaxHealth, FireRate }
+public enum TowerStat { Damage, Range, MaxHealth, FireRate,
+    SellAmount
+}
 public enum ModifierMode { Flat, PercentAdd }
 
 [Serializable]

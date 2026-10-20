@@ -15,9 +15,12 @@ MonoBehaviour:
   displayName: +20% Damage
   description: dps
   icon: {fileID: 0}
-  cost: 50
-  difficultyWeight: 1
+  cost: 40
+  difficultyWeight: 0.5
   modifiers:
   - stat: 0
+    mode: 1
+    value: 0.2
+  - stat: 4
     mode: 1
     value: 0.2

@@ -15,6 +15,7 @@ public class TowerStats : MonoBehaviour
     public float Range => Get(TowerStat.Range, data.range);
     public float MaxHealth => Get(TowerStat.MaxHealth, data.maxHealth);
     public float FireRate => Get(TowerStat.FireRate, data.fireRate);
+    public int SellAmount=> (int)Get(TowerStat.SellAmount, data.sellAmount);
 
     public void AddModifiers(IEnumerable<StatModifier> newMods)
     {
@@ -38,6 +39,7 @@ public class TowerStats : MonoBehaviour
         TowerStat.Range => Range,
         TowerStat.MaxHealth => MaxHealth,
         TowerStat.FireRate => FireRate,
+        TowerStat.SellAmount => SellAmount,
         _ => 0f
     };
 

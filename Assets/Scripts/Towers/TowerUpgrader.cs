@@ -10,6 +10,8 @@ public class TowerUpgrader : MonoBehaviour
     private TowerData data;
     private readonly Dictionary<UpgradePathSO, int> tiers = new();
 
+    public int TotalSpent { get; private set; }
+
     public event Action<UpgradePathSO, int> OnUpgraded; //per-tower event (UI listens to this)
 
     public static event Action<TowerUpgrader, UpgradePathSO, UpgradeSO> AnyUpgraded; // Global event (Upgrade Tracker listens to this)
@@ -20,8 +22,6 @@ public class TowerUpgrader : MonoBehaviour
     public void Init(TowerData towerData)
     {
         data = towerData;
-        Debug.Log($"[TowerUpgrader] Init on {name} | data: {(data != null ? data.name : "NULL")} | " +
-                  $"upgradePaths: {(data != null && data.upgradePaths != null ? data.upgradePaths.Length.ToString() : "null")}", this);
     }
     public int GetTier(UpgradePathSO path) => tiers.TryGetValue(path, out int t) ? t : 0;
 
@@ -41,6 +41,8 @@ public class TowerUpgrader : MonoBehaviour
         // Swap for however your build-cost currency works
         if (!ResourceManager.Instance.Spend(next.cost)) return false;
 
+        TotalSpent += next.cost;
+
         stats.AddModifiers(next.modifiers);
         tiers[path] = GetTier(path) + 1;
         UpgradePower += next.difficultyWeight;
@@ -48,8 +50,13 @@ public class TowerUpgrader : MonoBehaviour
         visuals?.ShowTier(path, tiers[path]);
         OnUpgraded?.Invoke(path, tiers[path]);
         AnyUpgraded?.Invoke(this, path, next);
+
+        Debug.Log($"The Current Sell Amount for " + data.towerName + " is " + stats.SellAmount);
+        
         return true;
     }
+
+   
 
 
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DamagePath
   m_EditorClassIdentifier: Assembly-CSharp::UpgradePathSO
   displayName: Dmg Up
-  icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 0}
   tiers:
   - {fileID: 11400000, guid: af81342dfeb51284eb7b816eaea319a5, type: 2}
   - {fileID: 11400000, guid: e2f31520630569b4aaeba199c0a32693, type: 2}

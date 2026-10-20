@@ -12,7 +12,7 @@ using UnityEngine;
 [RequireComponent(typeof(TowerUpgrader))]   
 public class Tower : MonoBehaviour, IDamageable
 {
-
+    
     [SerializeField] private TowerData data;
     [SerializeField] private RangeIndicator rangeIndicator;
     [SerializeField] private Transform firePoint;
@@ -33,6 +33,7 @@ public class Tower : MonoBehaviour, IDamageable
     public bool IsAlive => currentHealth > 0f;
 
     public event Action OnDeath;
+    public event Action OnSold;
 
     [SerializeField] private HealthBar healthBar;
 
@@ -165,6 +166,14 @@ public class Tower : MonoBehaviour, IDamageable
     public void Select() => rangeIndicator.Show();
     public void Deselect() => rangeIndicator.Hide();
 
+    public void Sell()
+    {
+        ResourceManager.Instance.Add(stats.SellAmount);
+
+        OnSold?.Invoke();
+
+        Destroy(gameObject);
+    }
 
     private void OnDrawGizmos()
     {

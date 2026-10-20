@@ -14,6 +14,10 @@ public class TowerData : ScriptableObject
     public float range = 10f;
     public float fireRate = 1f; //shots per-second
     public int buildCost = 50;
+    public int sellAmount = 40;
+
+    [Tooltip("How the Sale amount increases based off of upgrades.")]
+    public float saleIncrease = 0.5f;
 
     [Header("Behaviour")]
     public ProjectileBehaviour projectileBehavior;

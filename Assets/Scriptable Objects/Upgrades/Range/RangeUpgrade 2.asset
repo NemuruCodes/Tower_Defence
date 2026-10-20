@@ -21,3 +21,6 @@ MonoBehaviour:
   - stat: 1
     mode: 1
     value: 0.25
+  - stat: 4
+    mode: 1
+    value: 0.1
