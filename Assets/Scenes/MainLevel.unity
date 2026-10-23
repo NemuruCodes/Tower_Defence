@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!23 &15042933 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6418785108243971062, guid: 09ea518a9179eed4682e6aeabfc737b0, type: 3}
+  m_PrefabInstance: {fileID: 82679927}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &35630942
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,18 +269,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3614059702278831016, guid: 09ea518a9179eed4682e6aeabfc737b0, type: 3}
-      propertyPath: visuals.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3614059702278831016, guid: 09ea518a9179eed4682e6aeabfc737b0, type: 3}
-      propertyPath: visuals.Array.data[0].path
-      value: 
-      objectReference: {fileID: 11400000, guid: d8c8f527abbe05a44b82d2f450046e43, type: 2}
-    - target: {fileID: 3614059702278831016, guid: 09ea518a9179eed4682e6aeabfc737b0, type: 3}
-      propertyPath: visuals.Array.data[0].tierObjects.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 6018496963861490798, guid: 09ea518a9179eed4682e6aeabfc737b0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -200.8
@@ -320,19 +313,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlockerTower
       objectReference: {fileID: 0}
+    - target: {fileID: 6717932575690442094, guid: 09ea518a9179eed4682e6aeabfc737b0, type: 3}
+      propertyPath: renderersToFlash.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6717932575690442094, guid: 09ea518a9179eed4682e6aeabfc737b0, type: 3}
+      propertyPath: 'renderersToFlash.Array.data[1]'
+      value: 
+      objectReference: {fileID: 353325082}
+    - target: {fileID: 6717932575690442094, guid: 09ea518a9179eed4682e6aeabfc737b0, type: 3}
+      propertyPath: 'renderersToFlash.Array.data[2]'
+      value: 
+      objectReference: {fileID: 15042933}
+    - target: {fileID: 6717932575690442094, guid: 09ea518a9179eed4682e6aeabfc737b0, type: 3}
+      propertyPath: 'renderersToFlash.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1517205811}
     - target: {fileID: 7826276776105323190, guid: 09ea518a9179eed4682e6aeabfc737b0, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 330585545}
-    - target: {fileID: 7905706753542932000, guid: 09ea518a9179eed4682e6aeabfc737b0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09ea518a9179eed4682e6aeabfc737b0, type: 3}
+--- !u!23 &162600473 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4312802319024154182, guid: 4e9a1d23b18cb12479c44d9d89933709, type: 3}
+  m_PrefabInstance: {fileID: 1164143557}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &188501128 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5951960092423238243, guid: aaf24964ed8b2e44489147369f1782d8, type: 3}
@@ -635,6 +645,11 @@ MonoBehaviour:
   rotateRightKey: 100
   pitchUpKey: 119
   pitchDownKey: 115
+--- !u!23 &353325082 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1115726343347764019, guid: 09ea518a9179eed4682e6aeabfc737b0, type: 3}
+  m_PrefabInstance: {fileID: 82679927}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1498,6 +1513,68 @@ RectTransform:
   m_AnchoredPosition: {x: 200, y: 0}
   m_SizeDelta: {x: 350, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &912074509
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: a37f76a2a2926f041848e9d81cee3ea5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -199.69
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a37f76a2a2926f041848e9d81cee3ea5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a37f76a2a2926f041848e9d81cee3ea5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 44.58
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a37f76a2a2926f041848e9d81cee3ea5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a37f76a2a2926f041848e9d81cee3ea5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a37f76a2a2926f041848e9d81cee3ea5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a37f76a2a2926f041848e9d81cee3ea5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a37f76a2a2926f041848e9d81cee3ea5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a37f76a2a2926f041848e9d81cee3ea5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a37f76a2a2926f041848e9d81cee3ea5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a37f76a2a2926f041848e9d81cee3ea5, type: 3}
+      propertyPath: m_Name
+      value: ProjectileTowerUpgrade1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a37f76a2a2926f041848e9d81cee3ea5, type: 3}
+--- !u!23 &963063827 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1500467211640934064, guid: 4e9a1d23b18cb12479c44d9d89933709, type: 3}
+  m_PrefabInstance: {fileID: 1164143557}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &991169533
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1648,11 +1725,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3593260272478070454, guid: 4e9a1d23b18cb12479c44d9d89933709, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.2951054
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 3593260272478070454, guid: 4e9a1d23b18cb12479c44d9d89933709, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 53.81
+      value: 57.83
       objectReference: {fileID: 0}
     - target: {fileID: 3593260272478070454, guid: 4e9a1d23b18cb12479c44d9d89933709, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1682,18 +1759,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6892217612551321138, guid: 4e9a1d23b18cb12479c44d9d89933709, type: 3}
-      propertyPath: visuals.Array.size
-      value: 0
+    - target: {fileID: 5563796513461020580, guid: 4e9a1d23b18cb12479c44d9d89933709, type: 3}
+      propertyPath: renderersToFlash.Array.size
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 6892217612551321138, guid: 4e9a1d23b18cb12479c44d9d89933709, type: 3}
-      propertyPath: visuals.Array.data[0].tierObjects.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6892217612551321138, guid: 4e9a1d23b18cb12479c44d9d89933709, type: 3}
-      propertyPath: visuals.Array.data[1].tierObjects.Array.size
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 5563796513461020580, guid: 4e9a1d23b18cb12479c44d9d89933709, type: 3}
+      propertyPath: 'renderersToFlash.Array.data[1]'
+      value: 
+      objectReference: {fileID: 162600473}
+    - target: {fileID: 5563796513461020580, guid: 4e9a1d23b18cb12479c44d9d89933709, type: 3}
+      propertyPath: 'renderersToFlash.Array.data[2]'
+      value: 
+      objectReference: {fileID: 963063827}
+    - target: {fileID: 5563796513461020580, guid: 4e9a1d23b18cb12479c44d9d89933709, type: 3}
+      propertyPath: 'renderersToFlash.Array.data[3]'
+      value: 
+      objectReference: {fileID: 963063827}
     - target: {fileID: 7271819716359860151, guid: 4e9a1d23b18cb12479c44d9d89933709, type: 3}
       propertyPath: m_Name
       value: BeamTower 1
@@ -2618,6 +2699,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 89d73fb3bc9e0684eba0c60b4f94f73e, type: 2}
   delayBetweenWaves: 5
   initialDelay: 0.5
+--- !u!23 &1517205811 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2839963716468169775, guid: 09ea518a9179eed4682e6aeabfc737b0, type: 3}
+  m_PrefabInstance: {fileID: 82679927}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1590849723
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3601,7 +3687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c88797bedb05ff4db43ca3255e583c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResourceManager
-  startingResources: 150
+  startingResources: 500
 --- !u!114 &2057295987 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5014979640194476879, guid: 9b5baa12ef7e25a46963aad9de8be44a, type: 3}
@@ -3631,3 +3717,4 @@ SceneRoots:
   - {fileID: 1164143557}
   - {fileID: 82679927}
   - {fileID: 991169533}
+  - {fileID: 912074509}

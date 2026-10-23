@@ -19,7 +19,7 @@ public class TowerVisuals : MonoBehaviour
             if (pv.path != path) continue;
             for (int i = 0; i < pv.tierObjects.Length; i++)
                 if (pv.tierObjects[i] != null)
-                    pv.tierObjects[i].SetActive(i == tier - 1);   // only the current tier shows
+                    pv.tierObjects[i].SetActive(i == tier);   // only the current tier shows
         }
     }
 }
