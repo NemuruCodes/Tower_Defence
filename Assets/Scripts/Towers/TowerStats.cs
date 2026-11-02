@@ -10,7 +10,6 @@ public class TowerStats : MonoBehaviour
     public event Action<TowerStat, float, float> OnStatChanged; //stat , old Value, New Value
 
     public void Init(TowerData towerData) => data = towerData;
-
     public float Damage => Get(TowerStat.Damage, data.damage);
     public float Range => Get(TowerStat.Range, data.range);
     public float MaxHealth => Get(TowerStat.MaxHealth, data.maxHealth);

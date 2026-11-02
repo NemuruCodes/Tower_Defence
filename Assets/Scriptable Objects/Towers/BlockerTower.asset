@@ -14,11 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TowerData
   towerName: Blocker Tower
   towerPrefab: {fileID: 6124956618333753899, guid: 09ea518a9179eed4682e6aeabfc737b0, type: 3}
+  stageMeshes:
+  - {fileID: 6239881831769578202, guid: e78c678de881a6e47a9bc955f1769384, type: 3}
+  - {fileID: 4910602656421348495, guid: abfa25903779d944ebe3f85fdfec5e51, type: 3}
+  - {fileID: 4910602656421348495, guid: abfa25903779d944ebe3f85fdfec5e51, type: 3}
+  - {fileID: 4910602656421348495, guid: abfa25903779d944ebe3f85fdfec5e51, type: 3}
   maxHealth: 500
   damage: 0
   range: 0
   fireRate: 0
   buildCost: 50
+  sellAmount: 40
+  saleIncrease: 0.5
   projectileBehavior: {fileID: 0}
   targetingStrategy: {fileID: 11400000, guid: 3c6e8f70f55e33649867b7d3425080fc, type: 2}
   upgradePaths:

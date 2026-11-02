@@ -43,6 +43,8 @@ public class Tower : MonoBehaviour, IDamageable
 
     private static readonly List<Tower> activeTowers = new List<Tower>();
 
+    public bool CanSell => !isCenterTower && !CompareTag("MainTower");
+
     private float CurrentRange => stats != null ? stats.Range : data.range;
     /*
     private void Start()
@@ -157,9 +159,6 @@ public class Tower : MonoBehaviour, IDamageable
     private void Die()
     {
         OnDeath?.Invoke();
-
-       
-
         Destroy(gameObject);
     }
 
@@ -168,6 +167,7 @@ public class Tower : MonoBehaviour, IDamageable
 
     public void Sell()
     {
+        if (!CanSell) return;
         ResourceManager.Instance.Add(stats.SellAmount);
 
         OnSold?.Invoke();

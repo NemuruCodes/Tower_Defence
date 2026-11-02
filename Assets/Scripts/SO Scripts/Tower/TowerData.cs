@@ -7,6 +7,7 @@ public class TowerData : ScriptableObject
     [Header("Identity")]
     public string towerName;
     public GameObject towerPrefab;
+    public Mesh[] stageMeshes;
 
     [Header("Stats")]
     public float maxHealth = 100;

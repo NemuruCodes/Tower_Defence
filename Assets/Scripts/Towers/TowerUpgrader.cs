@@ -6,6 +6,7 @@ public class TowerUpgrader : MonoBehaviour
 {
     [SerializeField] private TowerStats stats;
     [SerializeField] private TowerVisuals visuals;
+    private int stage;
 
     private TowerData data;
     private readonly Dictionary<UpgradePathSO, int> tiers = new();
@@ -22,6 +23,7 @@ public class TowerUpgrader : MonoBehaviour
     public void Init(TowerData towerData)
     {
         data = towerData;
+        if(visuals != null) visuals.Init(data);
     }
     public int GetTier(UpgradePathSO path) => tiers.TryGetValue(path, out int t) ? t : 0;
 
@@ -42,13 +44,20 @@ public class TowerUpgrader : MonoBehaviour
         if (!ResourceManager.Instance.Spend(next.cost)) return false;
 
         TotalSpent += next.cost;
-
         stats.AddModifiers(next.modifiers);
-        tiers[path] = GetTier(path) + 1;
+
+        int newTier = GetTier(path) + 1;
+        tiers[path] = newTier;
         UpgradePower += next.difficultyWeight;
 
-        visuals?.ShowTier(path, tiers[path]);
-        OnUpgraded?.Invoke(path, tiers[path]);
+
+        if (newTier > stage)
+        {
+            stage = newTier;
+            if (visuals != null) visuals.SetStage(stage);
+        }
+
+        OnUpgraded?.Invoke(path, newTier);
         AnyUpgraded?.Invoke(this, path, next);
 
         Debug.Log($"The Current Sell Amount for " + data.towerName + " is " + stats.SellAmount);

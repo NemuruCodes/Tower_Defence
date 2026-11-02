@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TowerData
   towerName: Single Shot Tower
   towerPrefab: {fileID: 4890464631777073238, guid: 9cfc514911ca7774bb36c9f7b6912d5b, type: 3}
+  stageMeshes:
+  - {fileID: 2534964839176971238, guid: c9faf9575bc71f54ba1836626156262e, type: 3}
+  - {fileID: -5671587518489835524, guid: 4d59cab53784611489b0a2cb04aa1ae2, type: 3}
   maxHealth: 125
   damage: 18
   range: 15
