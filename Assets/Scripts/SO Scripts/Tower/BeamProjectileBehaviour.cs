@@ -4,7 +4,7 @@ using UnityEngine;
 public class BeamProjectileBehaviour : ProjectileBehaviour
 {
     [SerializeField] private BeamVisual beamPrefab;
-    [SerializeField] private float beamVisualDuration = 0.1f;
+    [SerializeField] private float beamLingerTime = 0.5f;
 
     public override void OnHit(Transform target, float damage, Vector3 hitPosition)
     {
@@ -14,9 +14,15 @@ public class BeamProjectileBehaviour : ProjectileBehaviour
 
     public override void Fire(Transform firePoint, Transform target, float damage)
     {
+        if (target == null) return;
+
         OnHit(target, damage, target.position);
 
-        BeamVisual beam = Instantiate(beamPrefab);
-        beam.Play(firePoint.position, target.position, beamVisualDuration);
+        // Reuse this tower's beam if it already has one
+        BeamVisual beam = firePoint.GetComponentInChildren<BeamVisual>();
+        if (beam == null)
+            beam = Instantiate(beamPrefab, firePoint);
+
+        beam.Track(firePoint, target, beamLingerTime);
     }
 }
