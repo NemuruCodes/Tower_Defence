@@ -2086,7 +2086,13 @@ VisualEffect:
     m_Vector3f:
       m_Array: []
     m_Vector4f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 6.016, y: 4.724607, z: 0.5669529, w: 1}
+        m_Name: SparkColour
+        m_Overridden: 0
+      - m_Value: {x: 1.1463152, y: 2.2382534, z: 6.943396, w: 1}
+        m_Name: FlashColour
+        m_Overridden: 0
     m_Uint:
       m_Array: []
     m_Int:
