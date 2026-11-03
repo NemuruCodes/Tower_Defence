@@ -125,7 +125,7 @@ public class TerrainGenerator : MonoBehaviour
 
                         else if (y <= waterHeight)// Below the water level
                         {
-                            terrainGrid.SetCell(x,y,z,TerrainType.Water);
+                            terrainGrid.SetCell(x,y,z,TerrainType.Air);
                         }
                         else if (y >= mountainHeight)// Above the Mountain level
                         {
