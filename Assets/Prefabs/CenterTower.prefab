@@ -542,7 +542,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceff1679ab388034e9d57997ee090b9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerVisuals
-  visuals: []
+  meshFilter: {fileID: 1897877788385534344}
+  outline: {fileID: 8425802359206400352}
 --- !u!1 &8628808756772863716
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,6 +732,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3061547979084110876}
   m_SourcePrefab: {fileID: 100100000, guid: 8c6dca8f7a4e4e0439c65d5b6f111787, type: 3}
+--- !u!33 &1897877788385534344 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: -5754084199372789682, guid: 8c6dca8f7a4e4e0439c65d5b6f111787, type: 3}
+  m_PrefabInstance: {fileID: 3059069098565601734}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2788457089036301463 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8c6dca8f7a4e4e0439c65d5b6f111787, type: 3}
