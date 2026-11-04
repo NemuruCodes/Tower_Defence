@@ -6,6 +6,7 @@ public class CenterTowerSpawner : MonoBehaviour
     public TerrainGenerator terrainGenerator;
     public GameObject towerPrefab;
     public UIManager uiManager;
+    public InvertColourControl invertControl;
 
     public OrbitCameraController orbitCamera;
 
@@ -45,6 +46,7 @@ public class CenterTowerSpawner : MonoBehaviour
         currentTower.OnDeath -= HandleCenterTowerDeath; 
         if (uiManager != null)
         {
+            //invertControl.Flash();
             uiManager.LostGame();
         }
     }

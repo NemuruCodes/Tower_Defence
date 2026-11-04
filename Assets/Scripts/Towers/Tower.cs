@@ -45,6 +45,10 @@ public class Tower : MonoBehaviour, IDamageable
 
     public bool CanSell => !isCenterTower && !CompareTag("MainTower");
 
+    //public InvertColourControl invertControl;
+    [SerializeField] private GameObject explosion;
+    [SerializeField] private GameObject explosionPrefab;
+
     private float CurrentRange => stats != null ? stats.Range : data.range;
     /*
     private void Start()
@@ -76,7 +80,7 @@ public class Tower : MonoBehaviour, IDamageable
         rangeIndicator.SetRadius(stats.Range);
         healthBar.SetHealth(currentHealth, stats.MaxHealth);
 
-        
+        //invertControl = FindAnyObjectByType<InvertColourControl>();
     }
 
     private void HandleStatChanged(TowerStat stat, float oldValue, float newValue)
@@ -158,6 +162,11 @@ public class Tower : MonoBehaviour, IDamageable
 
     private void Die()
     {
+        //invertControl.Flash();
+        //explosion.SetActive(true);
+
+        Vector3 ePos = explosion.transform.position;
+        GameObject invertExplosion = Instantiate(explosionPrefab,ePos,Quaternion.identity);
         OnDeath?.Invoke();
         Destroy(gameObject);
     }
