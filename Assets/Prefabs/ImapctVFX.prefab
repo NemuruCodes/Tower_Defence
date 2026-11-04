@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HitVisual
   impactVFX: {fileID: 5721321929340998984}
   effect: {fileID: 2743644546583166547}
-  UseVFX: 1
+  UseVFX: 0
 --- !u!1 &6656280519844211540
 GameObject:
   m_ObjectHideFlags: 0
