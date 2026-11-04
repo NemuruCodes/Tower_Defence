@@ -454,11 +454,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d70e8cf9921f9e64589af44d888968c0, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1250
+      value: 1900
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d70e8cf9921f9e64589af44d888968c0, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1250
+      value: 1900
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d70e8cf9921f9e64589af44d888968c0, type: 3}
       propertyPath: m_LocalScale.z
@@ -466,7 +466,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d70e8cf9921f9e64589af44d888968c0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 49.5
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d70e8cf9921f9e64589af44d888968c0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -474,7 +474,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d70e8cf9921f9e64589af44d888968c0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 49.5
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d70e8cf9921f9e64589af44d888968c0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2224,6 +2224,18 @@ PrefabInstance:
       propertyPath: mountainPrefab
       value: 
       objectReference: {fileID: 6348394447659711208, guid: 39974c7c91b608f439fae1e4781aff67, type: 3}
+    - target: {fileID: 2968010321229220610, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
+      propertyPath: depth
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968010321229220610, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
+      propertyPath: width
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 4353653600987978130, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
+      propertyPath: edgeMargin
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 4353653600987978130, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
       propertyPath: towerPrefab
       value: 
