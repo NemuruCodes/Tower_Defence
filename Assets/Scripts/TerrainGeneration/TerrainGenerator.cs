@@ -228,7 +228,7 @@ public class TerrainGenerator : MonoBehaviour
     {
         if (cell == null)
             return false;
-        return cell.type != TerrainType.Water && cell.type != TerrainType.Mountain;
+        return cell.type != TerrainType.Water && cell.type != TerrainType.Mountain && cell.type != TerrainType.Air;
     }
 
 }
