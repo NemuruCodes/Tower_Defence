@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class TowerSelectionManager : MonoBehaviour
 {
@@ -8,14 +10,35 @@ public class TowerSelectionManager : MonoBehaviour
     [SerializeField] private TowerPlacementManager placementManager;
 
 
-
-
     private Tower selectedTower;
     private Outline hoveredOutline;
+
+    private static readonly List<RaycastResult> uiHits = new List<RaycastResult>();
+
+    private bool IsPointerOverWorldUI()
+    {
+        if (EventSystem.current == null) return false;
+
+        var data = new PointerEventData(EventSystem.current) { position = Input.mousePosition };
+        uiHits.Clear();
+        EventSystem.current.RaycastAll(data, uiHits);
+
+        foreach (var hit in uiHits)
+            if (hit.gameObject.GetComponentInParent<Selectable>() != null)
+                return true;
+
+        return false;
+    }
 
     private void Update()
     {
         if (placementManager != null && placementManager.IsPlacing)
+        {
+            ClearHover();
+            return;
+        }
+
+        if (IsPointerOverWorldUI())
         {
             ClearHover();
             return;
