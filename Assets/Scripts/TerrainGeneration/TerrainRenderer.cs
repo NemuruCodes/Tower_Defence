@@ -20,6 +20,7 @@ public class TerrainRenderer : MonoBehaviour
     [Header("Path Markers")]
     public GameObject slowPathMarkerPrefab;
     public GameObject fastPathMarkerPrefab;
+    public GameObject mountainPathMarkerPrefab;
     public Vector3 pathMarkerOffset = new Vector3(0f, 0.55f, 0f);
 
     public void RenderTerrain()
@@ -54,6 +55,7 @@ public class TerrainRenderer : MonoBehaviour
 
                         if (cell.type == TerrainType.Slow) marker = slowPathMarkerPrefab;
                         else if (cell.type == TerrainType.Fast) marker = fastPathMarkerPrefab;
+                        else if (cell.type == TerrainType.Mountain) marker = mountainPathMarkerPrefab;
 
                         if (marker != null)
                             Instantiate(marker, (Vector3)cell.position + pathMarkerOffset, Quaternion.identity, transform);

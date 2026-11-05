@@ -11,6 +11,7 @@ public class EnemyMover : MonoBehaviour
     [Header("Terrain Speed")]
     public float slowSpeedMultiplier = 0.67f;
     public float fastSpeedMultiplier = 1.43f;
+    public float mountainSpeedMultiplier = 0.2f;
 
     [Header("Gravity / Jump")]
     public float gravity = -20f;

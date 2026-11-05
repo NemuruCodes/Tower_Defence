@@ -18,13 +18,14 @@ public class TerrainPathfinder : MonoBehaviour
     [Header("Costs")]
     public float slowTileCost = 1.2f;
     [Min(0.1f)] public float fastTileCost = 0.7f;
+    [Min(1f)] public float mountainTileCost = 50f;
 
     public Dictionary<Vector2Int, List<Vector2Int>> PathsBySpawner { get; private set; }
 
     public List<List<Vector2Int>> GeneratePathsToTarget()
     {
         //var graph = new TerrainSurfaceGraph(terrainGrid, maxStepHeight);
-        var graph = new TerrainSurfaceGraph(terrainGrid, maxStepHeight, slowTileCost, fastTileCost);
+        var graph = new TerrainSurfaceGraph(terrainGrid, maxStepHeight, slowTileCost, fastTileCost, mountainTileCost);
         var allPaths = new List<List<Vector2Int>>();
         PathsBySpawner = new Dictionary<Vector2Int, List<Vector2Int>>();
 
