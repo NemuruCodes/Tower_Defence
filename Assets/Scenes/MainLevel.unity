@@ -2205,6 +2205,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4534414277891255884, guid: 79eb7411a615a3d43964d777afb3971d, type: 3}
     - target: {fileID: 219256023336597705, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
+      propertyPath: dirtPrefab
+      value: 
+      objectReference: {fileID: 2925353821966988885, guid: 006a17585c1e7894fa95df158742b930, type: 3}
+    - target: {fileID: 219256023336597705, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
       propertyPath: fastPrefab
       value: 
       objectReference: {fileID: 4534414277891255884, guid: 20aa664f467141e44be39bf9aaff4b42, type: 3}

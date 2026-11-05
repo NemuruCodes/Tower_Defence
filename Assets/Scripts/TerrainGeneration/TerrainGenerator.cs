@@ -134,7 +134,31 @@ public class TerrainGenerator : MonoBehaviour
 
                 for (int y = 0; y < terrainGrid.height; y++)
                 {
-                    if (y <= terrainHeight)
+                    if (y > terrainHeight)
+                    {
+                        terrainGrid.SetCell(x, y, z, TerrainType.Air);
+                        continue;
+                    }
+
+                    bool isTop = (y == terrainHeight);
+
+                    if (generateTowerPlateau && IsInsidePlateau(x, z))
+                    {
+                        terrainGrid.SetCell(x, y, z, isTop ? TerrainType.Ground : TerrainType.Dirt);
+                    }
+                    else if (y <= waterHeight)        // Below the water level
+                    {
+                        terrainGrid.SetCell(x, y, z, TerrainType.Air);
+                    }
+                    else if (y >= mountainHeight)     // Mountain level and above
+                    {
+                        terrainGrid.SetCell(x, y, z, TerrainType.Mountain);
+                    }
+                    else
+                    {
+                        terrainGrid.SetCell(x, y, z, isTop ? TerrainType.Ground : TerrainType.Dirt);
+                    }
+                    /*if (y <= terrainHeight)
                     {
                         if (generateTowerPlateau && IsInsidePlateau(x, z))
                         {
@@ -153,11 +177,12 @@ public class TerrainGenerator : MonoBehaviour
                         {
                             terrainGrid.SetCell(x, y, z, TerrainType.Ground);
                         }
-                    }
+
+                }
                     else
                     {
                         terrainGrid.SetCell(x,y,z,TerrainType.Air);
-                    }
+                    }*/
                 }
 
                 if (terrainHeight >= 0 && terrainHeight < terrainGrid.height)

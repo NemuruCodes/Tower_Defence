@@ -16,6 +16,7 @@ public class TerrainRenderer : MonoBehaviour
     public GameObject pathPrefab;
     public GameObject slowPrefab;
     public GameObject fastPrefab;
+    public GameObject dirtPrefab;
 
     [Header("Path Markers")]
     public GameObject slowPathMarkerPrefab;
@@ -93,6 +94,9 @@ public class TerrainRenderer : MonoBehaviour
 
             case TerrainType.Fast:
                 return fastPrefab;
+
+            case TerrainType.Dirt:
+                return dirtPrefab != null ? dirtPrefab : groundPrefab;
 
             default:
                 return null;

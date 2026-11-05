@@ -10,7 +10,8 @@ using UnityEngine;
       Target,
       Spawner,
       Slow,
-      Fast
+      Fast,
+      Dirt  //Adding thi to fix the towers spawning on the tiles bellow the surface
 }
 
 
