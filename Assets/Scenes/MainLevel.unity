@@ -2201,9 +2201,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 219256023336597705, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
+      propertyPath: SlowPrefab
+      value: 
+      objectReference: {fileID: 4534414277891255884, guid: 79eb7411a615a3d43964d777afb3971d, type: 3}
+    - target: {fileID: 219256023336597705, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
+      propertyPath: fastPrefab
+      value: 
+      objectReference: {fileID: 4534414277891255884, guid: 20aa664f467141e44be39bf9aaff4b42, type: 3}
+    - target: {fileID: 219256023336597705, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
       propertyPath: pathPrefab
       value: 
       objectReference: {fileID: 2925353821966988885, guid: b6fc3d2d630855644a9e182222ac0ab3, type: 3}
+    - target: {fileID: 219256023336597705, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
+      propertyPath: slowPrefab
+      value: 
+      objectReference: {fileID: 4534414277891255884, guid: 79eb7411a615a3d43964d777afb3971d, type: 3}
     - target: {fileID: 219256023336597705, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
       propertyPath: waterPrefab
       value: 
@@ -2224,6 +2236,14 @@ PrefabInstance:
       propertyPath: mountainPrefab
       value: 
       objectReference: {fileID: 6348394447659711208, guid: 39974c7c91b608f439fae1e4781aff67, type: 3}
+    - target: {fileID: 219256023336597705, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
+      propertyPath: fastPathMarkerPrefab
+      value: 
+      objectReference: {fileID: 2925353821966988885, guid: 9082f315b29a35b4abec78db4a154403, type: 3}
+    - target: {fileID: 219256023336597705, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
+      propertyPath: slowPathMarkerPrefab
+      value: 
+      objectReference: {fileID: 2925353821966988885, guid: 9c410d51008203246b214b98ae2badb0, type: 3}
     - target: {fileID: 2968010321229220610, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
       propertyPath: depth
       value: 150
@@ -2240,6 +2260,22 @@ PrefabInstance:
       propertyPath: towerPrefab
       value: 
       objectReference: {fileID: 6196530488297049178, guid: 74b361dd00b4d7c4ebd79efe16551136, type: 3}
+    - target: {fileID: 4353653600987978130, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
+      propertyPath: numFastPatches
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4353653600987978130, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
+      propertyPath: numSlowPatches
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 4353653600987978130, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
+      propertyPath: fastPatchRadius
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4353653600987978130, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
+      propertyPath: slowPatchRadius
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4353653600987978130, guid: 606441a03c9fd4b4eb1d031cbd8a0179, type: 3}
       propertyPath: terrainPathfinder
       value: 

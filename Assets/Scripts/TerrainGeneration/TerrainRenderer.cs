@@ -15,6 +15,12 @@ public class TerrainRenderer : MonoBehaviour
     public GameObject spawnerPrefab; 
     public GameObject pathPrefab;
     public GameObject slowPrefab;
+    public GameObject fastPrefab;
+
+    [Header("Path Markers")]
+    public GameObject slowPathMarkerPrefab;
+    public GameObject fastPathMarkerPrefab;
+    public Vector3 pathMarkerOffset = new Vector3(0f, 0.55f, 0f);
 
     public void RenderTerrain()
     {
@@ -41,6 +47,17 @@ public class TerrainRenderer : MonoBehaviour
                         continue;
 
                     Instantiate(prefab,cell.position,Quaternion.identity,transform);
+
+                    if (cell.isOnPath)
+                    {
+                        GameObject marker = null;
+
+                        if (cell.type == TerrainType.Slow) marker = slowPathMarkerPrefab;
+                        else if (cell.type == TerrainType.Fast) marker = fastPathMarkerPrefab;
+
+                        if (marker != null)
+                            Instantiate(marker, (Vector3)cell.position + pathMarkerOffset, Quaternion.identity, transform);
+                    }
                 }
             }
         }
@@ -71,6 +88,9 @@ public class TerrainRenderer : MonoBehaviour
 
             case TerrainType.Slow:
                 return slowPrefab;
+
+            case TerrainType.Fast:
+                return fastPrefab;
 
             default:
                 return null;

@@ -19,6 +19,8 @@ public static class TerrainAStar
         cameFrom[start] = start;
         costSoFar[start] = 0;
 
+
+
         while (frontier.Count > 0)  //Keep looping while searching
         {
             Vector2Int current = frontier.Dequeue(); // Gets the cell with the lowest priority from cells. This is how the A* finds the best path
@@ -33,7 +35,8 @@ public static class TerrainAStar
                 if (!costSoFar.ContainsKey(next) || newCost < costSoFar[next])
                 {
                     costSoFar[next] = newCost;
-                    double priority = newCost + Heuristic(next, goal); // Finding the A* proirity from the cost
+                    //double priority = newCost + Heuristic(next, goal); // Finding the A* proirity from the cost
+                    double priority = newCost + Heuristic(next, goal) * graph.MinCost; // Updated the proirity to work with a slow and fast cell
                     frontier.Enqueue(next, priority); // Addding cell/Node to queue
                     cameFrom[next] = current;
                 }

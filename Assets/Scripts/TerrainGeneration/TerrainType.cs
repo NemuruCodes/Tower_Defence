@@ -9,8 +9,9 @@ using UnityEngine;
       Path,
       Target,
       Spawner,
-      Slow
-    }
+      Slow,
+      Fast
+}
 
 
 
