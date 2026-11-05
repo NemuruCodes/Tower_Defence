@@ -14,6 +14,7 @@ public class TerrainRenderer : MonoBehaviour
     public GameObject targetPrefab;  
     public GameObject spawnerPrefab; 
     public GameObject pathPrefab;
+    public GameObject slowPrefab;
 
     public void RenderTerrain()
     {
@@ -67,6 +68,9 @@ public class TerrainRenderer : MonoBehaviour
 
             case TerrainType.Path:
                 return pathPrefab;
+
+            case TerrainType.Slow:
+                return slowPrefab;
 
             default:
                 return null;

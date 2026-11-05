@@ -14,6 +14,7 @@ public class TerrainSurfaceGraph
 {
     private readonly TerrainGrid grid;
     private readonly int maxStepHeight;
+    private readonly double slowCost;
 
     private static readonly Vector2Int[] Directions =
     {
@@ -23,10 +24,11 @@ public class TerrainSurfaceGraph
         new Vector2Int(0, -1),
     };
 
-    public TerrainSurfaceGraph(TerrainGrid grid, int maxStepHeight = int.MaxValue)
+    public TerrainSurfaceGraph(TerrainGrid grid, int maxStepHeight = int.MaxValue, double slowCost = 1.5)
     {
         this.grid = grid;
         this.maxStepHeight = maxStepHeight;
+        this.slowCost = slowCost;
     }
 
     public bool IsPathable(TerrainCell cell)
@@ -34,7 +36,7 @@ public class TerrainSurfaceGraph
         if (cell == null)
             return false;
 
-        return cell.type == TerrainType.Ground ||cell.type == TerrainType.Target ||cell.type == TerrainType.Spawner ||cell.type == TerrainType.Path;
+        return cell.type == TerrainType.Ground ||cell.type == TerrainType.Target ||cell.type == TerrainType.Spawner ||cell.type == TerrainType.Path || cell.type == TerrainType.Slow;
     }
 
     public IEnumerable<Vector2Int> Neighbors(Vector2Int id)
@@ -63,6 +65,10 @@ public class TerrainSurfaceGraph
     //Cost for the height
     public double Cost(Vector2Int a, Vector2Int b)
     {
+        TerrainCell next = grid.GetSurfaceCell(b.x, b.y);
+        if (next != null && next.type == TerrainType.Slow)
+            return slowCost;
+
         return 1.0;
     }
 }

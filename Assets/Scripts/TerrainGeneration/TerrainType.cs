@@ -8,7 +8,8 @@ using UnityEngine;
       Water,
       Path,
       Target,
-      Spawner
+      Spawner,
+      Slow
     }
 
 
