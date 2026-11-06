@@ -8,8 +8,11 @@ using UnityEngine;
       Water,
       Path,
       Target,
-      Spawner
-    }
+      Spawner,
+      Slow,
+      Fast,
+      Dirt  //Adding thi to fix the towers spawning on the tiles bellow the surface
+}
 
 
 

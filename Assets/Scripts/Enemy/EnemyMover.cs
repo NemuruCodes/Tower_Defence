@@ -8,6 +8,11 @@ public class EnemyMover : MonoBehaviour
     public float moveSpeed = 3f;
     public float arrivalThreshold = 0.1f;
 
+    [Header("Terrain Speed")]
+    public float slowSpeedMultiplier = 0.67f;
+    public float fastSpeedMultiplier = 1.43f;
+    public float mountainSpeedMultiplier = 0.2f;
+
     [Header("Gravity / Jump")]
     public float gravity = -20f;
     public float jumpSpeed = 8f;
@@ -71,7 +76,8 @@ public class EnemyMover : MonoBehaviour
         if (direction.sqrMagnitude > 0.0001f)
         {
             direction.Normalize();
-            Vector3 move = direction * moveSpeed * Time.deltaTime;
+            //Vector3 move = direction * moveSpeed * Time.deltaTime;
+            Vector3 move = direction * moveSpeed * GetTerrainSpeedMultiplier() * Time.deltaTime;
 
             if (move.magnitude > horizontalDistance)
                 move = direction * horizontalDistance;
@@ -126,5 +132,22 @@ public class EnemyMover : MonoBehaviour
         int gx = Mathf.RoundToInt(worldX);
         int gz = Mathf.RoundToInt(worldZ);
         return grid.GetSurfaceHeight(gx, gz) + 1f;
+    }
+
+    private float GetTerrainSpeedMultiplier()
+    {
+        TerrainCell cell = grid.GetSurfaceCell(
+            Mathf.RoundToInt(transform.position.x),
+            Mathf.RoundToInt(transform.position.z));
+
+        if (cell == null)
+            return 1f;
+
+        switch (cell.type)
+        {
+            case TerrainType.Slow: return slowSpeedMultiplier;
+            case TerrainType.Fast: return fastSpeedMultiplier;
+            default: return 1f;
+        }
     }
 }

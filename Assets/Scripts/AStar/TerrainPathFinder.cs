@@ -15,11 +15,17 @@ public class TerrainPathfinder : MonoBehaviour
     [Header("Step / Jump Height")]
     public int maxStepHeight = int.MaxValue;
 
+    [Header("Costs")]
+    public float slowTileCost = 1.2f;
+    [Min(0.1f)] public float fastTileCost = 0.7f;
+    [Min(1f)] public float mountainTileCost = 50f;
+
     public Dictionary<Vector2Int, List<Vector2Int>> PathsBySpawner { get; private set; }
 
     public List<List<Vector2Int>> GeneratePathsToTarget()
     {
-        var graph = new TerrainSurfaceGraph(terrainGrid, maxStepHeight);
+        //var graph = new TerrainSurfaceGraph(terrainGrid, maxStepHeight);
+        var graph = new TerrainSurfaceGraph(terrainGrid, maxStepHeight, slowTileCost, fastTileCost, mountainTileCost);
         var allPaths = new List<List<Vector2Int>>();
         PathsBySpawner = new Dictionary<Vector2Int, List<Vector2Int>>();
 
@@ -65,6 +71,8 @@ public class TerrainPathfinder : MonoBehaviour
 
             // Leave Target/Spawner cells as-is, only repaint plain Ground
             // so the endpoints keep rendering with their own prefabs.
+
+            cell.isOnPath = true;
             if (cell.type == TerrainType.Ground)
             {
                 terrainGrid.SetCell(cell.position, TerrainType.Path);
@@ -105,5 +113,18 @@ public class TerrainPathfinder : MonoBehaviour
         }
 
         return results;
+    }
+
+    public float GetSpeedMultiplier(TerrainCell cell)
+    {
+        if (cell == null)
+            return 1f;
+
+        switch (cell.type)
+        {
+            case TerrainType.Slow: return 1f / slowTileCost;
+            case TerrainType.Fast: return 1f / fastTileCost;
+            default: return 1f;
+        }
     }
 }

@@ -35,6 +35,14 @@ public class TerrainGenerator : MonoBehaviour
     public int numSpawners = 4;
     public int edgeMargin = 2;
 
+    [Header("Slow Patches")]
+    public int numSlowPatches = 6;
+    public int slowPatchRadius = 2;
+
+    [Header("Fast Patches")]
+    public int numFastPatches = 4;
+    public int fastPatchRadius = 2;
+
 
     private float offsetX;
     private float offsetZ;
@@ -46,9 +54,19 @@ public class TerrainGenerator : MonoBehaviour
         return new Vector3(towerCenter.x, towerFlatHeight + 1, towerCenter.y);
     }
 
+
+    private readonly System.Random patchRng = new System.Random();
+
+    //These are little overkill but saw I could keep the start clean by making these middle man callers
+    public void PlaceSlowPatches() => PlacePatches(TerrainType.Slow, numSlowPatches, slowPatchRadius); 
+    public void PlaceFastPatches() => PlacePatches(TerrainType.Fast, numFastPatches, fastPatchRadius);
+
+
     private void Start()
     {
         GenerateTerrain();
+        PlaceSlowPatches();
+        PlaceFastPatches();
         PlaceObjectives();
         terrainPathfinder.GeneratePathsToTarget();
 
@@ -116,7 +134,31 @@ public class TerrainGenerator : MonoBehaviour
 
                 for (int y = 0; y < terrainGrid.height; y++)
                 {
-                    if (y <= terrainHeight)
+                    if (y > terrainHeight)
+                    {
+                        terrainGrid.SetCell(x, y, z, TerrainType.Air);
+                        continue;
+                    }
+
+                    bool isTop = (y == terrainHeight);
+
+                    if (generateTowerPlateau && IsInsidePlateau(x, z))
+                    {
+                        terrainGrid.SetCell(x, y, z, isTop ? TerrainType.Ground : TerrainType.Dirt);
+                    }
+                    else if (y <= waterHeight)        // Below the water level
+                    {
+                        terrainGrid.SetCell(x, y, z, TerrainType.Air);
+                    }
+                    else if (y >= mountainHeight)     // Mountain level and above
+                    {
+                        terrainGrid.SetCell(x, y, z, TerrainType.Mountain);
+                    }
+                    else
+                    {
+                        terrainGrid.SetCell(x, y, z, isTop ? TerrainType.Ground : TerrainType.Dirt);
+                    }
+                    /*if (y <= terrainHeight)
                     {
                         if (generateTowerPlateau && IsInsidePlateau(x, z))
                         {
@@ -135,11 +177,12 @@ public class TerrainGenerator : MonoBehaviour
                         {
                             terrainGrid.SetCell(x, y, z, TerrainType.Ground);
                         }
-                    }
+
+                }
                     else
                     {
                         terrainGrid.SetCell(x,y,z,TerrainType.Air);
-                    }
+                    }*/
                 }
 
                 if (terrainHeight >= 0 && terrainHeight < terrainGrid.height)
@@ -222,6 +265,66 @@ public class TerrainGenerator : MonoBehaviour
 
         TerrainCell chosen = candidates[rng.Next(candidates.Count)];
         terrainGrid.SetCell(chosen.position, TerrainType.Spawner);
+    }
+
+    /*public void PlaceSlowPatches()
+    {
+        System.Random rng = new System.Random();
+
+        for (int i = 0; i < numSlowPatches; i++)
+        {
+            int cx = rng.Next(0, terrainGrid.width);
+            int cz = rng.Next(0, terrainGrid.depth);
+
+            for (int x = cx - slowPatchRadius; x <= cx + slowPatchRadius; x++)
+            {
+                for (int z = cz - slowPatchRadius; z <= cz + slowPatchRadius; z++)
+                {
+                    int dx = x - cx;
+                    int dz = z - cz;
+                    if (dx * dx + dz * dz > slowPatchRadius * slowPatchRadius)
+                        continue;
+
+                    if (generateTowerPlateau && IsInsidePlateau(x, z))
+                        continue; // safe guard for the center tower
+
+                    TerrainCell cell = terrainGrid.GetSurfaceCell(x, z); // Only getting the ground cells
+                    if (cell == null || cell.type != TerrainType.Ground)
+                        continue;
+
+                    terrainGrid.SetCell(cell.position, TerrainType.Slow);
+                }
+            }
+        }
+    }*/
+
+    private void PlacePatches(TerrainType type, int count, int radius)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            int cx = patchRng.Next(0, terrainGrid.width);
+            int cz = patchRng.Next(0, terrainGrid.depth);
+
+            for (int x = cx - radius; x <= cx + radius; x++)
+            {
+                for (int z = cz - radius; z <= cz + radius; z++)
+                {
+                    int dx = x - cx;
+                    int dz = z - cz;
+                    if (dx * dx + dz * dz > radius * radius)
+                        continue;
+
+                    if (generateTowerPlateau && IsInsidePlateau(x, z))
+                        continue;
+
+                    TerrainCell cell = terrainGrid.GetSurfaceCell(x, z);
+                    if (cell == null || cell.type != TerrainType.Ground)
+                        continue;
+
+                    terrainGrid.SetCell(cell.position, type);
+                }
+            }
+        }
     }
 
     private bool IsValidSpawnerCell(TerrainCell cell)
