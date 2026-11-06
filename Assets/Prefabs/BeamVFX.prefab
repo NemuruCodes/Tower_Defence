@@ -5095,7 +5095,7 @@ MonoBehaviour:
   lineRenderer: {fileID: 3870081593980964708}
   impactVFX: {fileID: 6814969100966641887}
   effect: {fileID: 6890087413492592587}
-  UseVFX: 0
+  UseVFX: 1
 --- !u!1001 &4417516762991434483
 PrefabInstance:
   m_ObjectHideFlags: 0
