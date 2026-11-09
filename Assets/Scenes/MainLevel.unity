@@ -3607,7 +3607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c88797bedb05ff4db43ca3255e583c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResourceManager
-  startingResources: 500
+  startingResources: 300
 --- !u!114 &2057295987 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5014979640194476879, guid: 9b5baa12ef7e25a46963aad9de8be44a, type: 3}
